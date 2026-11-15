@@ -195,6 +195,48 @@ footer{margin-top:50px;color:var(--muted);font-size:.8rem;border-top:1px solid v
   section.s{border:0;margin:0;padding:0} .homecard{box-shadow:none;border:2px solid #c9b27a;color:#000} .home{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ── teacher plan drawer · the same shape as the KTL app's TeacherPlan drawer ── */
+.tp{position:fixed;top:0;right:0;bottom:0;width:min(480px,100vw);background:#13162f;border-left:1px solid rgba(245,194,66,.3);box-shadow:-20px 0 60px rgba(0,0,0,.5);z-index:50;display:none;flex-direction:column;font-size:.92rem}
+.tp.open{display:flex}
+.tp-head{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+.tp-eyebrow{font-family:ui-monospace,Consolas,monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.tp-meta{display:flex;gap:6px;margin-top:6px}
+.tp-chip{font-size:.72rem;padding:3px 9px;border-radius:999px;border:1px solid rgba(245,194,66,.45);color:var(--gold)}
+.tp-chip.alt{border-color:rgba(179,136,255,.5);color:#c9b8ff}
+.tp-close{background:none;border:0;color:var(--muted);font-size:1.2rem;cursor:pointer}
+.tp-classbar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 14px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.2);font-size:.78rem;color:var(--muted)}
+.tp-k{font-family:ui-monospace,Consolas,monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-right:8px;white-space:nowrap}
+.tp-fig-btn{font:inherit;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:999px;border:1px solid rgba(245,194,66,.5);background:rgba(245,194,66,.08);color:var(--gold);cursor:pointer}
+.tp-fig-btn.on{background:var(--gold);color:#1a1300}
+.tp-jumpbar{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:8px 14px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.2)}
+.tp-jump{width:26px;height:26px;border-radius:50%;border:1px solid rgba(245,194,66,.45);background:rgba(245,194,66,.08);color:var(--gold);font-family:ui-monospace,Consolas,monospace;font-size:.72rem;font-weight:700;cursor:pointer}
+.tp-jump-k{font-family:ui-monospace,Consolas,monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:4px}
+.tp-scroll{overflow:auto;padding:12px 16px 30px;flex:1}
+.tp-arch{font-size:.76rem;color:var(--muted);line-height:1.55;margin-bottom:14px;padding:8px 10px;border:1px dashed rgba(179,136,255,.45);border-radius:8px}
+.tp-beat{padding:12px 0 14px;border-top:1px solid rgba(255,255,255,.06)}
+.tp-beat.hook{border-top:0}
+.tp-beat-head{display:grid;grid-template-columns:28px 1fr auto auto;gap:10px;align-items:start;margin-bottom:8px}
+.tp-num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:ui-monospace,Consolas,monospace;font-size:.72rem;font-weight:700;color:#1a1300;background:var(--gold)}
+.tp-beat-title{font-family:Fredoka,sans-serif;font-size:1.05rem;line-height:1.2;color:var(--gold2)}
+.tp-beat-sub{font-family:ui-monospace,Consolas,monospace;font-size:.66rem;letter-spacing:.04em;color:var(--muted);margin-top:3px}
+.tp-min{font-family:ui-monospace,Consolas,monospace;font-size:.72rem;color:#c9b8ff;padding-top:4px}
+.tp-gojump{white-space:nowrap;padding:3px 8px;font-size:.62rem}
+.tp-say{border-left:2px solid rgba(245,194,66,.45);padding:2px 0 2px 12px;margin:6px 0 10px}
+.tp-say p{font-size:.92rem;line-height:1.55;color:var(--ink);margin:0 0 8px}
+.tp-say p:last-child{margin-bottom:0}
+.tp-line{display:flex;gap:8px;align-items:baseline;font-size:.8rem;line-height:1.45;color:#cfc8bd;margin:5px 0}
+.tp-lands{margin-top:8px;font-size:.82rem;font-style:italic;color:var(--gold2)}
+.tp-talk{margin:8px 0;padding:8px 10px;border-radius:10px;background:rgba(86,198,255,.08);border:1px solid rgba(86,198,255,.35);font-size:.8rem;line-height:1.45}
+.tp-notes{margin-top:10px;border:1px solid rgba(245,194,66,.22);border-radius:10px;overflow:hidden}
+.tp-notes-head{width:100%;display:flex;justify-content:space-between;cursor:pointer;padding:10px 12px;border:0;background:rgba(245,194,66,.06);color:var(--gold2);font:inherit;font-family:Fredoka,sans-serif;font-size:.95rem}
+.tp-notes-body{padding:8px 12px 12px;font-size:.8rem;color:#cfc8bd;display:none;line-height:1.5}
+.tp-notes.open .tp-notes-body{display:block}
+.tp-notes-body h5{margin:10px 0 4px;color:var(--gold);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.tp-mis{margin:4px 0 8px}.tp-mis b{color:var(--rose)}
+.tp-flash{animation:tpflash 1.6s ease-out;border-radius:14px}
+@keyframes tpflash{0%{box-shadow:0 0 0 3px rgba(245,194,66,.9),0 0 30px rgba(245,194,66,.5)}100%{box-shadow:0 0 0 0 rgba(245,194,66,0)}}
+body.class #plan-btn,body.class .switch,body.class .tn{display:none!important}
+@media (max-width:860px){.tp{width:100vw}}
 </style>
 </head>
 <body>
@@ -651,6 +693,132 @@ $$("video").forEach(v=>{
 });
 /* one voice at a time: pause other videos when one plays */
 $$("video").forEach(v=>v.addEventListener("play",()=>$$("video").forEach(o=>{ if(o!==v) o.pause(); })));
+/* ───────── TEACHER PLAN · the KTL app's drawer, rebuilt for this page ─────────
+   A story with a hook before any clip, a path of beats that land one-for-one on the sections,
+   a wrap that pays the hook off, and the notes. `say` is spoken: first person, present tense,
+   short sentences. "→ Lesson" scrolls this window AND the class screen (a second window of this
+   page opened with ?class=1 and dragged to the projector), over a BroadcastChannel. */
+const PLAN = {
+  archetype: "The morning ritual — a thing every kid in the room already did today, revealed to be the whole lesson",
+  treatment: "The wardrobe — one muddy outfit stays on screen all hour and gets changed one piece at a time",
+  hook: {
+    title: "Why would a prisoner write about clothes?", minutes: 4, jump: "#s0",
+    say: "Hands up if you got dressed this morning. Everybody. Good.\n\nNow hands up if you have ever come inside so muddy, so sweaty, that you could not wait to peel those clothes off. Keep them up. Look around.\n\nHere is the strange part. About two thousand years ago a man sat in a rented room in Rome with a chain on his wrist, and he wrote a letter to a church. And one of the biggest things he wrote about was getting dressed.\n\nWhy would a prisoner write about clothes? Hold that question. We answer it at the end.",
+    do: "Take the hands. Write the question on the board and leave it there all hour: WHY WOULD A PRISONER WRITE ABOUT CLOTHES? Then play the film. Have Paul's Journeys Map up for the recap afterward: prisoner, shipwreck, Rome, visitors, letters.",
+    guide: "Teacher Guide p. 110–111 · Introduction · Slides 1–5",
+  },
+  path: [
+    { title: "The muddy outfit", section: "Put off", guide: "Teacher Guide p. 111–112 · Slides 6–11 · Class Notes row 1", minutes: 6, jump: "#s1",
+      talk: { prompt: "Tell your partner about the muddiest you have ever been, and what you did the second you got home. Swap.", minutes: 2, share: "Who kept the muddy clothes on? Nobody. Remember that." },
+      say: "Paul says the old self is like that muddy outfit. Not a bad day. The whole way we lived before Jesus. He calls it corrupt. Spoiled. Rotten.\n\nBut look what he does not say. He does not say stand there with the mud off and nothing on. He says put on the new self. God's kind of clean. Righteous and holy.\n\nAnd the switch, the thing that actually changes you, is in the middle. Be renewed in your mind. Change what you think about, and what you do starts to change.",
+      do: "Play the clip. Scripture Sheet: underline 'put off your old self' and 'put on the new self', circle 'corrupt', 'righteousness', 'holiness', underline 'renewed in the spirit of your minds'. Class Notes row 1: corrupt, holy. Then the first Changing Room vote: the headphones.",
+      watch: "The class will like the 'It's fine, whatever' answer because it sounds peaceful. Let them pick it. The mud comes back on its own and makes your point for you.",
+      lands: "Old self off. New self on. Mind renewed." },
+    { title: "Which way are you facing", section: "Above", guide: "Teacher Guide p. 112 · Slides 12–13 · Class Notes row 2", minutes: 4, jump: "#s2",
+      say: "You have been raised with Christ. That is Paul's starting line. Not try harder. Raised.\n\nSo where do you point your mind? Up. Things above. Not greed, not me first, not the stuff down here.\n\nHere is the rule I want you to keep: where your mind points, your feet follow.",
+      do: "Clip, then Class Notes row 2: earth, above. Changing Room vote two: the birthday money. Watch which way the needle turns on the screen.",
+      watch: "Someone will say the prayer answer is the good one. Ask: did the prayer cost him anything? Praying is good. Praying instead of helping is the mind on earth with a church voice.",
+      lands: "Where your mind points, your feet follow." },
+    { title: "Six muddy things", section: "Take off", guide: "Teacher Guide p. 113 · Slides 14–17 · Class Notes Put Off column", minutes: 5, jump: "#s3",
+      say: "Paul does not leave it vague. He names them. Anger. Wrath. Malice, which is hatred. Slander, lies about a person. Obscene talk. And lying.\n\nSix muddy things. And one small word: the new self is BEING renewed. Being. It is not instant. It takes time, and that is allowed.",
+      do: "Clip. Vowels game on the board, one kid per word. Then the drawing-is-trash vote.",
+      watch: "Kids who hear 'being renewed' as permission to stay muddy. It is not permission. It is patience.",
+      lands: "Six to put away. Being renewed takes time." },
+    { title: "The clean pile", section: "Put on", guide: "Teacher Guide p. 113–114 · Slides 18–21 · Class Notes Put On column", minutes: 5, jump: "#s4",
+      talk: { prompt: "Name one habit you have tried to quit. What did you put in its place, if anything? Swap.", minutes: 2, share: "Did anyone quit by just stopping? What happened?" },
+      say: "Here is why you cannot just quit a bad habit. If all you think about is not doing it, you keep doing it. You need something to put in its place.\n\nSo Paul hands over the clean clothes one at a time. Compassion. Kindness. Humility. Meekness. Patience. Forgiveness. Why forgive? Because the Lord forgave you.\n\nAnd over all of it, love. Love is the belt. It holds the whole outfit together.",
+      do: "Tell your own bad-habit story first, the one your parents wanted you to drop, and what replaced it. Clip. Vowels game for the put-on words. The team-captain vote.",
+      lands: "Love binds it all together." },
+    { title: "The trade", section: "The swap", guide: "Teacher Guide p. 114–115 · Slides 22–25 · Class Notes matching", minutes: 5, jump: "#s5",
+      say: "Paul lines them up like a trade. Lying for truth. Stealing for honest work, so you have something to give away. Rotten talk for words that build. Anger for forgiving before the sun goes down.\n\nTwo new muddy words: bitterness, which is holding the hurt, and clamor, which is the tantrum. And the clean ones: kind, tenderhearted, forgiving, as God in Christ forgave you.",
+      do: "Clip. Matching game: tap a muddy word, tap its clean opposite. Let kids come up and tap. Then the ten-dollar-bill vote.",
+      watch: "The 'turn it in but say you don't know whose it is' answer feels honest to kids. Ask: is it true?",
+      lands: "Every muddy thing has a clean opposite." },
+    { title: "Who does the changing", section: "Made new", guide: "Teacher Guide p. 115–116 · Slides 26–28 · Application", minutes: 4, jump: "#s6",
+      say: "Stop here, because this is the part people get wrong. Being kind does not save you. Forgiving does not save you. Jesus does.\n\nYou cannot make yourself new. God makes you alive in Christ, by grace, through faith. New creation. That is his gift.\n\nThen, once you are new, you get to change your clothes. Every day. For the rest of your life. That has a name: sanctification. Becoming more like Jesus, a little at a time.",
+      do: "Clip. The last vote: the room that was not cleaned. When the belt appears, read the final card out loud. Then the guide's discussion: what else do we need to put off this week, and what goes on instead? Push for things they can actually do.",
+      watch: "Anyone who thinks six clean pieces means they are saved. The clothes are not the rescue. Say it twice.",
+      lands: "Jesus saves. Then we change clothes. That is sanctification." },
+    { title: "Rooted", section: "Verse", guide: "Teacher Guide p. 110 · Memory Verse (the guide does this before the teaching)", minutes: 4, jump: "#s7",
+      say: "Colossians two, six and seven. As you received Christ Jesus the Lord, so walk in him. Rooted, like a tree that will not blow over. Built up, like a house going up one brick at a time. Abounding in thanksgiving, which means overflowing with thank-yous.\n\nWatch the tree grow as we get the words in order.",
+      do: "Tiles in order, the class calling the next word. Then Hide 3, Hide 6, Hide everything, and say it together each time. Memory verse song if you have it.",
+      lands: "Rooted and built up in him." },
+    { title: "Survey says", section: "Review", guide: "Teacher Guide p. 116 · Review Questions · Lesson Review game", minutes: 6, jump: "#s8",
+      say: "Eight quick questions, hands up. Then two teams for Bible Feud. Everything on the board is something we said today.",
+      do: "Quiz by show of hands. Then split the room and play Bible Feud at the bottom of the page: the Grades 4–5 tier if you are short on time, all twelve rounds if you are not.",
+      lands: "They can say it back." },
+  ],
+  wrap: { minutes: 3, jump: "#s8",
+    say: "Back to the board. Why would a prisoner write about clothes?\n\nBecause the chain could not stop him. Paul could not go anywhere, but he could still take off the old and put on the new, every single morning. And so could the people he loved.\n\nNothing in your week can stop you either. Not a bad grade. Not a brother who breaks your headphones. One thing off. One thing on. That is the whole letter.",
+    do: "Fill the take-home card together: one put-off, one put-on, one check-in buddy. Print it or photograph it. Group prayer: thank God for making us new; ask for strength to replace, not just remove. Take requests." },
+  notes: {
+    misconceptions: [
+      { claim: "If I am kind and forgiving, that is what saves me.", fix: "No. Grace through faith saves. The clothes are what the saved get to put on." },
+      { claim: "Once you are saved, the sin just stops.", fix: "The new self is BEING renewed. A process, a lifetime, with the Spirit's help. Expect slow." },
+      { claim: "Forgiving means pretending it did not happen.", fix: "Ephesians 4:25 says speak the truth first. Truth, then forgiveness. The headphones beat shows both." },
+      { claim: "Taking the bad thing off is enough.", fix: "A hole fills itself with mud. Every put-off needs a put-on. The dashed garment on screen is that hole." },
+    ],
+    differentiation: {
+      finishedEarly: "Have them write a seventh Changing Room situation from their own week with the three choices: the muddy one, the remove-only one, and the clean one. Read the best one to the class.",
+      lost: "Drop the games and stay on the two Class Notes lists. One muddy word, its clean opposite, one example from their day. That is enough.",
+    },
+    discussion: [
+      "Which piece was hardest for our class to get clean, and why?",
+      "Paul wrote this from a chain. What is the chain in your week that you think stops you from changing?",
+      "Why does Paul say to forgive before the sun goes down? What happens to anger overnight?",
+    ],
+    assign: "The take-home card: one put-off, one put-on, one check-in buddy. Next week, first five minutes: who kept it, and what happened?",
+  },
+};
+const CLASS_MODE = /[?&]class=1/.test(location.search);
+if (CLASS_MODE) document.body.classList.add("class");
+const CH = "BroadcastChannel" in window ? new BroadcastChannel("ccl-lesson-189") : null;
+let classWin = null;
+function tpFlash(sel){ const el=$(sel); if(!el) return; window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 76, behavior:"smooth"}); el.classList.remove("tp-flash"); void el.offsetWidth; el.classList.add("tp-flash"); }
+function tpJump(sel){ tpFlash(sel); if(CH) CH.postMessage({t:"jump", id:sel}); }
+if (CH) CH.onmessage = (e) => { const m=e.data||{}; if(m.t==="jump" && CLASS_MODE) tpFlash(m.id); if(m.t==="scroll" && CLASS_MODE){ const d=document.documentElement; window.scrollTo(0, m.frac*(d.scrollHeight-window.innerHeight)); } if(m.t==="hello" && !CLASS_MODE) setClassState("the lesson"); };
+function setClassState(txt){ const el=$("#tp-class-state"); if(el) el.textContent=txt; }
+const paras = (t) => t.split("\n\n").map(p=>`<p>${p}</p>`).join("");
+const line = (k,v) => v ? `<div class="tp-line"><span class="tp-k">${k}</span><span>${v}</span></div>` : "";
+const talk = (t) => t ? `<div class="tp-talk"><span class="tp-k">🗣 Turn &amp; talk · ${t.minutes||2}′</span>${t.prompt}${t.share?`<div style="margin-top:4px"><span class="tp-k">Then</span>${t.share}</div>`:""}</div>` : "";
+function beatHTML(num, title, sub, b, cls){
+  return `<section class="tp-beat ${cls||""}" data-beat="${num}"><div class="tp-beat-head"><span class="tp-num">${num}</span><div><div class="tp-beat-title">${title}</div><div class="tp-beat-sub">${sub}</div></div><button class="tp-fig-btn tp-gojump" data-jump="${b.jump}" title="Scroll the lesson (and the class screen) to this point">→ Lesson</button><span class="tp-min">${b.minutes}′</span></div>
+    ${line("Guide", b.guide)}${talk(b.talk)}<div class="tp-say">${paras(b.say)}</div>${line("Do", b.do)}${line("Watch", b.watch)}${b.lands?`<div class="tp-lands"><span class="tp-k">Lands</span>${b.lands}</div>`:""}</section>`;
+}
+function buildPlan(){
+  const total = PLAN.hook.minutes + PLAN.path.reduce((n,b)=>n+b.minutes,0) + PLAN.wrap.minutes;
+  const d=document.createElement("aside"); d.className="tp"; d.id="tp"; d.setAttribute("aria-label","Teacher plan");
+  d.innerHTML = `
+   <div class="tp-head"><div><div class="tp-eyebrow">🍎 Teacher plan · students don't see this</div><div class="tp-meta"><span class="tp-chip">${total} min</span><span class="tp-chip alt">${PLAN.path.length+2} beats</span></div></div><button class="tp-close" id="tp-close" aria-label="Close teacher plan">✕</button></div>
+   <div class="tp-classbar"><div><span class="tp-k">Class screen</span><span id="tp-class-state">not open</span></div><div style="display:flex;gap:6px"><button class="tp-fig-btn" id="tp-open-class" title="Opens a bare second copy of this lesson. Drag it to the projector once; the → Lesson buttons move it.">⧉ Open window</button><button class="tp-fig-btn" id="tp-sync" title="Mirror your scrolling to the class screen. Off: it sits still until you jump it.">⇅ Sync scroll: off</button></div></div>
+   <div class="tp-jumpbar"><button class="tp-jump" data-beat="0" title="${PLAN.hook.title}">0</button>${PLAN.path.map((b,i)=>`<button class="tp-jump" data-beat="${i+1}" title="${b.title}">${i+1}</button>`).join("")}<button class="tp-jump" data-beat="✓" title="The wrap">✓</button><span class="tp-jump-k">tap a beat · drawer + lesson move together</span></div>
+   <div class="tp-scroll">
+     <div class="tp-arch"><div><span class="tp-k">Archetype</span>${PLAN.archetype}</div><div style="margin-top:4px"><span class="tp-k">Treatment</span>${PLAN.treatment}</div></div>
+     ${beatHTML(0, PLAN.hook.title, "The hook · before any clip", PLAN.hook, "hook")}
+     ${PLAN.path.map((b,i)=>beatHTML(i+1, b.title, b.section, b)).join("")}
+     ${beatHTML("✓", "The wrap", "Pay the hook off", PLAN.wrap, "wrap")}
+     <section class="tp-notes" id="tp-notes"><button class="tp-notes-head" id="tp-notes-head"><span>Teacher notes</span><span>▾</span></button><div class="tp-notes-body">
+       <h5>Misconceptions to correct early</h5>${PLAN.notes.misconceptions.map(m=>`<div class="tp-mis"><b>“${m.claim}”</b><br>${m.fix}</div>`).join("")}
+       <h5>If they finish early</h5><div>${PLAN.notes.differentiation.finishedEarly}</div>
+       <h5>If they're lost</h5><div>${PLAN.notes.differentiation.lost}</div>
+       <h5>Discussion</h5>${PLAN.notes.discussion.map(q=>`<div>• ${q}</div>`).join("")}
+       <h5>Assign</h5><div>${PLAN.notes.assign}</div>
+     </div></section>
+   </div>`;
+  document.body.appendChild(d);
+  $("#tp-close").onclick=()=>d.classList.remove("open");
+  $("#tp-notes-head").onclick=()=>$("#tp-notes").classList.toggle("open");
+  $$(".tp-gojump",d).forEach(b=>b.onclick=()=>tpJump(b.dataset.jump));
+  $$(".tp-jump",d).forEach(b=>b.onclick=()=>{ const el=$(`.tp-beat[data-beat="${b.dataset.beat}"]`,d); el.scrollIntoView({block:"start"}); el.classList.remove("tp-flash"); void el.offsetWidth; el.classList.add("tp-flash"); const j=el.querySelector(".tp-gojump"); if(j) tpJump(j.dataset.jump); });
+  $("#tp-open-class").onclick=()=>{ classWin=window.open(location.pathname+"?class=1","ccl-class"); if(!classWin){ setClassState("popup blocked"); return; } setClassState("opening…"); };
+  let sync=false, syncTimer=null, lastFrac=-1;
+  $("#tp-sync").onclick=(e)=>{ sync=!sync; e.currentTarget.textContent=sync?"⇅ Sync scroll: on":"⇅ Sync scroll: off"; e.currentTarget.classList.toggle("on",sync); clearInterval(syncTimer); if(sync){ syncTimer=setInterval(()=>{ const d=document.documentElement, max=d.scrollHeight-window.innerHeight, frac=max>0?window.scrollY/max:0; if(Math.abs(frac-lastFrac)<0.002) return; lastFrac=frac; if(CH) CH.postMessage({t:"scroll",frac}); },120); } };
+}
+if(!CLASS_MODE){
+  buildPlan();
+  const pb=document.createElement("button"); pb.className="btn sm alt"; pb.id="plan-btn"; pb.textContent="🍎 Plan"; pb.title="The teacher plan: hook, path, wrap, notes";
+  $(".top .in").appendChild(pb); pb.onclick=()=>$("#tp").classList.toggle("open");
+} else if(CH){ CH.postMessage({t:"hello"}); }
 </script>
 </body>
 </html>
