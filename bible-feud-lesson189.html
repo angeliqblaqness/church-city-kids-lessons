@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Feud – Paul Writes from Prison</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #0c1220;
+    --gold:   #e8a020;
+    --gold2:  #f5c842;
+    --panel:  #111d35;
+    --panel2: #192848;
+    --border: #1e3460;
+    --light:  #d8e0f0;
+    --dim:    #6878a0;
+    --correct:#1e8a4a;
+    --wrong:  #b02020;
+    --strike: #cc2222;
+    --teal:   #1a7a7a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    color: var(--light);
+    font-family: 'Barlow Condensed', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Subtle grid texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,160,32,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,160,32,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Glow blobs */
+  body::after {
+    content: '';
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,160,32,0.06) 0%, transparent 70%);
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ──────────────────────────────── */
+  header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 22px 20px 14px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(12,18,32,0.98) 0%, transparent 100%);
+  }
+
+  .show-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-shadow:
+      0 0 40px rgba(232,160,32,0.45),
+      0 2px 0 rgba(0,0,0,0.8);
+    line-height: 1;
+  }
+
+  .show-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    letter-spacing: 0.28em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .gold-line {
+    width: 260px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 8px auto 6px;
+  }
+
+  /* Music button */
+  #musicBtn {
+    margin-top: 10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    padding: 6px 22px;
+    border: 1.5px solid var(--gold);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--gold);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  #musicBtn:hover, #musicBtn.active {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  /* ── DIFFICULTY BAR ──────────────────────── */
+  .diff-bar {
+    position: relative; z-index: 2;
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    padding: 10px 20px 6px;
+  }
+
+  .diff-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.18em;
+    padding: 5px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--dim);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .diff-btn:hover, .diff-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(232,160,32,0.08);
+  }
+
+  /* ── SCOREBOARD ──────────────────────────── */
+  .scoreboard {
+    position: relative; z-index: 2;
+    display: flex; gap: 0; justify-content: center; align-items: stretch;
+    padding: 10px 20px 6px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .team-block {
+    flex: 1;
+    text-align: center;
+    padding: 10px 20px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+  }
+  .team-block:first-child { border-radius: 4px 0 0 4px; }
+  .team-block:last-child  { border-radius: 0 4px 4px 0; }
+
+  .team-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    color: var(--dim);
+  }
+  .team-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(232,160,32,0.4);
+  }
+
+  .vs-block {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 16px;
+    background: var(--panel2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    color: var(--dim);
+  }
+
+  /* ── STATUS ROW ──────────────────────────── */
+  .status-row {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 20px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .round-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    color: var(--dim);
+  }
+
+  .progress-dots {
+    display: flex; gap: 5px;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .dot.done    { background: var(--gold2); border-color: var(--gold2); }
+  .dot.current { background: var(--wrong); border-color: var(--wrong); }
+
+  .turn-pills {
+    display: flex; gap: 8px;
+  }
+  .turn-pill {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1.5px solid transparent;
+    opacity: 0.35;
+    transition: all 0.3s;
+  }
+  .turn-pill.active {
+    opacity: 1;
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ── QUESTION BOARD ──────────────────────── */
+  .q-board {
+    position: relative; z-index: 2;
+    max-width: 860px;
+    margin: 6px auto 10px;
+    padding: 0 16px;
+  }
+
+  .q-inner {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .q-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .q-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+
+  .q-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 4vw, 1.9rem);
+    letter-spacing: 0.05em;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .q-cat {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 2px 10px;
+    border: 1px solid rgba(232,160,32,0.3);
+    border-radius: 2px;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* ── ANSWER GRID ─────────────────────────── */
+  .answer-grid {
+    position: relative; z-index: 2;
+    max-width: 860px;
+    margin: 0 auto 10px;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .tile {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.1s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+    min-height: 62px;
+  }
+
+  .tile:hover:not(.revealed):not(.wrong-tile) {
+    border-color: var(--gold);
+    background: rgba(232,160,32,0.05);
+    transform: translateY(-1px);
+  }
+
+  .tile-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    color: var(--gold);
+    min-width: 26px;
+    text-align: center;
+    line-height: 1;
+    opacity: 0.85;
+  }
+
+  .tile-cover {
+    position: absolute;
+    inset: 0;
+    background: var(--panel2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease;
+  }
+
+  .tile-cover-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(232,160,32,0.5);
+  }
+
+  .tile-answer {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    flex: 1;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+  }
+
+  .tile-pts {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--gold2);
+    min-width: 40px;
+    text-align: right;
+  }
+
+  .tile.revealed {
+    border-color: var(--correct);
+    background: rgba(30,138,74,0.12);
+  }
+  .tile.revealed .tile-cover { opacity: 0; pointer-events: none; }
+
+  .tile.wrong-tile {
+    border-color: var(--wrong);
+    background: rgba(176,32,32,0.1);
+    animation: shakeIt 0.35s ease;
+  }
+
+  @keyframes shakeIt {
+    0%,100% { transform: translateX(0); }
+    25%      { transform: translateX(-6px); }
+    75%      { transform: translateX(6px); }
+  }
+
+  /* ── STRIKES ─────────────────────────────── */
+  .strikes-row {
+    position: relative; z-index: 2;
+    display: flex; gap: 10px; justify-content: center;
+    margin: 4px 0 10px;
+  }
+
+  .sx {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    width: 46px; height: 46px;
+    border: 2px solid rgba(176,32,32,0.2);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--strike);
+    opacity: 0.15;
+    transition: opacity 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .sx.hit {
+    opacity: 1;
+    border-color: var(--strike);
+    box-shadow: 0 0 18px rgba(204,34,34,0.6);
+    animation: popIn 0.35s ease;
+  }
+  @keyframes popIn {
+    0%  { transform: scale(0.5); }
+    70% { transform: scale(1.2); }
+    100%{ transform: scale(1); }
+  }
+
+  /* ── CONTROLS ────────────────────────────── */
+  .controls {
+    position: relative; z-index: 2;
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    padding: 0 20px 20px;
+  }
+
+  .btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    padding: 10px 26px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: filter 0.15s, transform 0.1s;
+  }
+  .btn:hover  { filter: brightness(1.15); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-gold    { background: var(--gold); color: var(--ink); }
+  .btn-red     { background: var(--wrong); color: #fff; }
+  .btn-outline { background: transparent; border: 1.5px solid var(--dim); color: var(--light); }
+  .btn-reset   { background: transparent; border: 1.5px solid #b02020; color: #cc4444; }
+
+  /* ── FLASH ───────────────────────────────── */
+  .flash {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    letter-spacing: 0.15em;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 200;
+    transition: opacity 0.2s, transform 0.2s;
+    text-shadow: 0 0 40px currentColor;
+  }
+  .flash.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .flash-ok  { color: #2ecc71; }
+  .flash-bad { color: var(--strike); }
+
+  /* ── MODAL ───────────────────────────────── */
+  .overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.82);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 300;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .overlay.show { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--panel);
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 34px 40px;
+    text-align: center;
+    max-width: 460px;
+    width: 90%;
+    box-shadow: 0 0 60px rgba(232,160,32,0.25);
+  }
+
+  .modal h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .modal p  { font-size: 1.05rem; color: var(--light); margin-bottom: 4px; line-height: 1.4; }
+  .modal .pts {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--gold2);
+    display: block;
+    margin: 10px 0;
+    text-shadow: 0 0 30px rgba(245,200,66,0.5);
+  }
+  .modal .winner-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .modal-btns {
+    display: flex; gap: 10px; justify-content: center;
+    margin-top: 18px; flex-wrap: wrap;
+  }
+
+  @media (max-width: 560px) {
+    .answer-grid { grid-template-columns: 1fr; }
+    .scoreboard  { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="show-title">BIBLE FEUD</div>
+  <div class="show-sub">Paul Writes from Prison &nbsp;•&nbsp; Lesson 189</div>
+  <div class="gold-line"></div>
+  <button id="musicBtn" onclick="toggleMusic()">&#9654; PLAY MUSIC</button>
+  <div style="margin-top:8px"><a href="lesson-189-put-off-put-on.html#s8" style="color:#6878a0;font-size:.85rem;letter-spacing:.2em;text-decoration:none">&larr; BACK TO THE LESSON</a></div>
+</header>
+
+<!-- Difficulty -->
+<div class="diff-bar">
+  <button class="diff-btn active" onclick="setDiff('all',this)">All 12 rounds</button>
+  <button class="diff-btn" onclick="setDiff('easy',this)">Warm-up</button>
+  <button class="diff-btn" onclick="setDiff('medium',this)">Grades 4–5</button>
+  <button class="diff-btn" onclick="setDiff('hard',this)">Challenge</button>
+</div>
+
+<!-- Scores -->
+<div class="scoreboard">
+  <div class="team-block">
+    <div class="team-label">Team 1</div>
+    <div class="team-score" id="s1">0</div>
+  </div>
+  <div class="vs-block">VS</div>
+  <div class="team-block">
+    <div class="team-label">Team 2</div>
+    <div class="team-score" id="s2">0</div>
+  </div>
+</div>
+
+<!-- Status -->
+<div class="status-row">
+  <span class="round-label" id="roundLbl">Round 1 of 12</span>
+  <div class="progress-dots" id="dots"></div>
+  <div class="turn-pills">
+    <div class="turn-pill active" id="p1">Team 1</div>
+    <div class="turn-pill" id="p2">Team 2</div>
+  </div>
+</div>
+
+<!-- Question -->
+<div class="q-board">
+  <div class="q-inner">
+    <div class="q-tag">Survey Says…</div>
+    <div class="q-text" id="qText">Loading…</div>
+    <span class="q-cat" id="qCat">Category</span>
+  </div>
+</div>
+
+<!-- Strikes -->
+<div class="strikes-row">
+  <div class="sx" id="x1">✗</div>
+  <div class="sx" id="x2">✗</div>
+  <div class="sx" id="x3">✗</div>
+</div>
+
+<!-- Answer Grid -->
+<div class="answer-grid" id="grid"></div>
+
+<!-- Controls -->
+<div class="controls">
+  <button class="btn btn-red"     onclick="addStrike()">✗ Strike</button>
+  <button class="btn btn-gold"    onclick="revealAll()">Reveal All</button>
+  <button class="btn btn-outline" onclick="nextRound()">Next Round →</button>
+  <button class="btn btn-reset"   onclick="confirmReset()">↺ Reset</button>
+</div>
+
+<!-- Flashes -->
+<div class="flash flash-ok"  id="fOk">✓ GOOD ANSWER!</div>
+<div class="flash flash-bad" id="fBad">✗ STRIKE!</div>
+
+<!-- Award Modal -->
+<div class="overlay" id="awardModal">
+  <div class="modal">
+    <h2 id="mTitle">Round Over!</h2>
+    <p id="mMsg">Points earned this round:</p>
+    <span class="pts" id="mPts">0</span>
+    <div class="winner-tag" id="mWinner"></div>
+    <div class="modal-btns">
+      <button class="btn btn-gold"    onclick="award(1)">Award Team 1</button>
+      <button class="btn btn-gold"    onclick="award(2)">Award Team 2</button>
+      <button class="btn btn-outline" onclick="closeAward()">Skip Award</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reset Modal -->
+<div class="overlay" id="resetModal">
+  <div class="modal">
+    <h2 style="color:#cc4444;">Reset Game?</h2>
+    <p>All scores will be cleared and the game will restart from Round 1.</p>
+    <div class="modal-btns">
+      <button class="btn btn-red"     onclick="doReset()">Yes, Reset</button>
+      <button class="btn btn-outline" onclick="closeReset()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── QUESTIONS ─────────────────────────────────────────────────────────────────
+const ALL_QUESTIONS = [
+
+  // ── WARM-UP ────────────────────────────────────────────────────────────────
+  {
+    level: 'easy',
+    category: "Paul in Rome",
+    q: "Name something true about Paul's time in Rome.",
+    answers: [
+      { a: "He was under house arrest", pts: 35 },
+      { a: "He wrote letters to the churches", pts: 30 },
+      { a: "One soldier guarded him", pts: 20 },
+      { a: "Visitors came and he told them the gospel", pts: 15 },
+    ]
+  },
+  {
+    level: 'easy',
+    category: "The Trip to Rome",
+    q: "Name something that happened on Paul's way to Rome.",
+    answers: [
+      { a: "A terrible storm", pts: 35 },
+      { a: "The ship was wrecked", pts: 30 },
+      { a: "They swam to the island of Malta", pts: 20 },
+      { a: "Not one life was lost", pts: 15 },
+    ]
+  },
+  {
+    level: 'easy',
+    category: "Put Off",
+    q: "Name something Paul told the Colossians to PUT OFF (Colossians 3:8–9).",
+    answers: [
+      { a: "Anger", pts: 30 },
+      { a: "Lying", pts: 25 },
+      { a: "Slander", pts: 18 },
+      { a: "Malice (hatred)", pts: 12 },
+      { a: "Wrath", pts: 10 },
+      { a: "Obscene talk", pts: 5 },
+    ]
+  },
+  {
+    level: 'easy',
+    category: "Put On",
+    q: "Name something Paul told the Colossians to PUT ON (Colossians 3:12–14).",
+    answers: [
+      { a: "Kindness", pts: 30 },
+      { a: "Love", pts: 25 },
+      { a: "Compassion", pts: 15 },
+      { a: "Patience", pts: 12 },
+      { a: "Humility / meekness", pts: 10 },
+      { a: "Forgiveness", pts: 8 },
+    ]
+  },
+
+  // ── GRADES 4–5 ─────────────────────────────────────────────────────────────
+  {
+    level: 'medium',
+    category: "Prison Letters",
+    q: "Name a letter Paul wrote while he was a prisoner in Rome.",
+    answers: [
+      { a: "Ephesians", pts: 35 },
+      { a: "Colossians", pts: 30 },
+      { a: "Philippians", pts: 20 },
+      { a: "Philemon", pts: 15 },
+    ]
+  },
+  {
+    level: 'medium',
+    category: "Old Self, New Self",
+    q: "Name a word Paul uses to describe the OLD self or the NEW self (Ephesians 4:22–24).",
+    answers: [
+      { a: "Corrupt (old self)", pts: 30 },
+      { a: "Righteous (new self)", pts: 25 },
+      { a: "Holy (new self)", pts: 25 },
+      { a: "Renewed (in the mind)", pts: 20 },
+    ]
+  },
+  {
+    level: 'medium',
+    category: "The Swap",
+    q: "Name a put-off / put-on PAIR from Ephesians 4:25–29.",
+    answers: [
+      { a: "Lying → speak the truth", pts: 30 },
+      { a: "Stealing → honest work", pts: 25 },
+      { a: "Corrupt talk → words that build up", pts: 25 },
+      { a: "Anger → settle it before sundown", pts: 20 },
+    ]
+  },
+  {
+    level: 'medium',
+    category: "Mind Above",
+    q: "Name something Paul says about believers in Colossians 3:1–2.",
+    answers: [
+      { a: "Raised with Christ", pts: 35 },
+      { a: "Seek the things that are above", pts: 30 },
+      { a: "Set your minds on things above", pts: 20 },
+      { a: "Not on things that are on earth", pts: 15 },
+    ]
+  },
+
+  // ── CHALLENGE ──────────────────────────────────────────────────────────────
+  {
+    level: 'hard',
+    category: "The Big Word",
+    q: "Name a word that describes how a believer becomes more like Jesus.",
+    answers: [
+      { a: "Sanctification", pts: 40 },
+      { a: "Renewed / renewal", pts: 25 },
+      { a: "Transformed", pts: 20 },
+      { a: "New creation", pts: 15 },
+    ]
+  },
+  {
+    level: 'hard',
+    category: "Why Forgive?",
+    q: "Name a reason Paul gives for forgiving and loving one another.",
+    answers: [
+      { a: "Because the Lord forgave you", pts: 40 },
+      { a: "Love binds everything together", pts: 25 },
+      { a: "We are members of one body", pts: 20 },
+      { a: "So the sun doesn't go down on your anger", pts: 15 },
+    ]
+  },
+  {
+    level: 'hard',
+    category: "The Church at Colossae",
+    q: "Name a fact about Colossae or its church.",
+    answers: [
+      { a: "Paul had never visited it", pts: 30 },
+      { a: "Epaphras helped start the church", pts: 25 },
+      { a: "A small town in Asia, near Laodicea", pts: 25 },
+      { a: "The letter was to be shared with Laodicea", pts: 20 },
+    ]
+  },
+  {
+    level: 'hard',
+    category: "Ephesians 4:31–32",
+    q: "Name something on Paul's list in Ephesians 4:31–32.",
+    answers: [
+      { a: "Bitterness", pts: 25 },
+      { a: "Clamor (an outburst)", pts: 20 },
+      { a: "Be kind", pts: 20 },
+      { a: "Tenderhearted", pts: 20 },
+      { a: "Forgiving one another", pts: 15 },
+    ]
+  },
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let diff = 'all';
+let filtered = [], order = [], roundIdx = 0;
+let curQ = null, revealed = [], strikes = 0, roundPts = 0;
+let scores = [0, 0], activeTeam = 0;
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+function setDiff(d, btn) {
+  diff = d;
+  document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  initGame();
+}
+
+function initGame() {
+  filtered = diff === 'all' ? ALL_QUESTIONS : ALL_QUESTIONS.filter(q => q.level === diff);
+  order = filtered.map((_,i) => i).sort(() => Math.random() - 0.5);
+  roundIdx = 0; scores = [0,0]; activeTeam = 0;
+  renderScores(); buildDots(); loadRound();
+}
+
+function buildDots() {
+  const c = document.getElementById('dots');
+  c.innerHTML = '';
+  order.forEach((_,i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' current' : '');
+    d.id = 'dot'+i;
+    c.appendChild(d);
+  });
+}
+
+function updateDots() {
+  order.forEach((_,i) => {
+    const d = document.getElementById('dot'+i);
+    if (!d) return;
+    d.className = 'dot' + (i < roundIdx ? ' done' : i === roundIdx ? ' current' : '');
+  });
+}
+
+function loadRound() {
+  if (roundIdx >= order.length) { endGame(); return; }
+  curQ = filtered[order[roundIdx]];
+  revealed = new Array(curQ.answers.length).fill(false);
+  strikes = 0; roundPts = 0;
+  renderStrikes(); renderQ(); renderGrid();
+  updateRoundLabel(); updateDots(); updateTurnPills();
+}
+
+function renderQ() {
+  document.getElementById('qText').textContent = curQ.q;
+  document.getElementById('qCat').textContent  = curQ.category;
+}
+
+function renderGrid() {
+  const g = document.getElementById('grid');
+  g.innerHTML = '';
+  curQ.answers.forEach((ans, i) => {
+    const t = document.createElement('div');
+    t.className = 'tile';
+    t.id = 'tile'+i;
+    t.onclick = () => revealTile(i);
+    t.innerHTML = `
+      <div class="tile-cover"><span class="tile-cover-num">${i+1}</span></div>
+      <div class="tile-num">${i+1}</div>
+      <div class="tile-answer">${ans.a}</div>
+      <div class="tile-pts">${ans.pts}</div>
+    `;
+    g.appendChild(t);
+  });
+}
+
+function revealTile(i) {
+  if (revealed[i]) return;
+  revealed[i] = true;
+  roundPts += curQ.answers[i].pts;
+  document.getElementById('tile'+i).classList.add('revealed');
+  sfxCorrect(); flash('ok');
+  if (revealed.every(Boolean)) setTimeout(showAward, 600);
+}
+
+function addStrike() {
+  if (strikes >= 3) return;
+  strikes++;
+  renderStrikes();
+  sfxStrike(); flash('bad');
+  if (strikes >= 3) setTimeout(showAward, 700);
+}
+
+function renderStrikes() {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById('x'+i).classList.toggle('hit', i <= strikes);
+  }
+}
+
+function revealAll() {
+  sfxReveal();
+  curQ.answers.forEach((_,i) => {
+    if (!revealed[i]) {
+      revealed[i] = true;
+      document.getElementById('tile'+i).classList.add('revealed');
+    }
+  });
+  roundPts = curQ.answers.reduce((s,a) => s + a.pts, 0);
+  setTimeout(showAward, 400);
+}
+
+function updateRoundLabel() {
+  document.getElementById('roundLbl').textContent =
+    `Round ${roundIdx+1} of ${order.length}`;
+}
+
+function renderScores() {
+  document.getElementById('s1').textContent = scores[0];
+  document.getElementById('s2').textContent = scores[1];
+}
+
+function updateTurnPills() {
+  document.getElementById('p1').classList.toggle('active', activeTeam === 0);
+  document.getElementById('p2').classList.toggle('active', activeTeam === 1);
+}
+
+function nextRound() {
+  roundIdx++;
+  activeTeam = 1 - activeTeam;
+  if (roundIdx >= order.length) { endGame(); return; }
+  loadRound();
+}
+
+// ── AWARD ─────────────────────────────────────────────────────────────────────
+function showAward() {
+  document.getElementById('mTitle').textContent  = strikes >= 3 ? 'Three Strikes!' : 'Round Complete!';
+  document.getElementById('mMsg').textContent    = strikes >= 3 ? 'Steal chance! Points on the board:' : 'Points earned:';
+  document.getElementById('mPts').textContent    = roundPts;
+  document.getElementById('mWinner').textContent = '';
+  document.getElementById('awardModal').classList.add('show');
+}
+
+function award(t) {
+  scores[t-1] += roundPts;
+  renderScores();
+  document.getElementById('mWinner').textContent = `+${roundPts} pts → Team ${t}`;
+  setTimeout(() => {
+    closeAward();
+    roundIdx++; activeTeam = t-1;
+    if (roundIdx >= order.length) { endGame(); return; }
+    loadRound();
+  }, 1100);
+}
+
+function closeAward() {
+  document.getElementById('awardModal').classList.remove('show');
+}
+
+// ── END ───────────────────────────────────────────────────────────────────────
+function endGame() {
+  const winner = scores[0] > scores[1] ? 'Team 1' : scores[1] > scores[0] ? 'Team 2' : 'Tie Game!';
+  document.getElementById('mTitle').textContent  = '🏆 Game Over!';
+  document.getElementById('mMsg').textContent    = `Winner: ${winner}`;
+  document.getElementById('mPts').textContent    = Math.max(...scores);
+  document.getElementById('mWinner').textContent = `Team 1: ${scores[0]}  |  Team 2: ${scores[1]}`;
+  document.getElementById('awardModal').classList.add('show');
+  document.querySelector('#awardModal .modal-btns').innerHTML =
+    `<button class="btn btn-gold" onclick="closeAward();initGame()">Play Again</button>`;
+}
+
+// ── RESET ─────────────────────────────────────────────────────────────────────
+function confirmReset() {
+  closeAward();
+  document.getElementById('resetModal').classList.add('show');
+}
+function closeReset() {
+  document.getElementById('resetModal').classList.remove('show');
+}
+function doReset() {
+  closeReset();
+  document.querySelector('#awardModal .modal-btns').innerHTML = `
+    <button class="btn btn-gold"    onclick="award(1)">Award Team 1</button>
+    <button class="btn btn-gold"    onclick="award(2)">Award Team 2</button>
+    <button class="btn btn-outline" onclick="closeAward()">Skip Award</button>`;
+  initGame();
+}
+
+// ── FLASH ─────────────────────────────────────────────────────────────────────
+function flash(type) {
+  const el = type === 'ok' ? document.getElementById('fOk') : document.getElementById('fBad');
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 850);
+}
+
+// ── AUDIO ─────────────────────────────────────────────────────────────────────
+let audioCtx = null, musicOn = false, musicNodes = [], loopTimer = null;
+
+function initCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function makeMaster(vol) {
+  const g = audioCtx.createGain();
+  g.gain.value = vol;
+  g.connect(audioCtx.destination);
+  return g;
+}
+
+function tone(freq, start, dur, type, vol, dest) {
+  const o = audioCtx.createOscillator();
+  const g = audioCtx.createGain();
+  o.type = type; o.frequency.value = freq;
+  g.gain.setValueAtTime(0, start);
+  g.gain.linearRampToValueAtTime(vol, start + 0.01);
+  g.gain.exponentialRampToValueAtTime(0.001, start + dur);
+  o.connect(g); g.connect(dest);
+  o.start(start); o.stop(start + dur + 0.05);
+  musicNodes.push(o);
+}
+
+function kick(t, dest) {
+  const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+  o.type = 'sine';
+  o.frequency.setValueAtTime(160, t);
+  o.frequency.exponentialRampToValueAtTime(40, t + 0.15);
+  g.gain.setValueAtTime(0.9, t);
+  g.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+  o.connect(g); g.connect(dest);
+  o.start(t); o.stop(t + 0.25);
+  musicNodes.push(o);
+}
+
+function snare(t, dest) {
+  const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.14, audioCtx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  const s = audioCtx.createBufferSource(), g = audioCtx.createGain();
+  const f = audioCtx.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 2000;
+  s.buffer = buf;
+  g.gain.setValueAtTime(0.35, t);
+  g.gain.exponentialRampToValueAtTime(0.001, t + 0.11);
+  s.connect(f); f.connect(g); g.connect(dest);
+  s.start(t); s.stop(t + 0.15);
+  musicNodes.push(s);
+}
+
+function hihat(t, open, dest) {
+  const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.07, audioCtx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  const s = audioCtx.createBufferSource(), g = audioCtx.createGain();
+  const f = audioCtx.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 8000;
+  const dur = open ? 0.07 : 0.025;
+  s.buffer = buf;
+  g.gain.setValueAtTime(0.15, t);
+  g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+  s.connect(f); f.connect(g); g.connect(dest);
+  s.start(t); s.stop(t + dur + 0.01);
+  musicNodes.push(s);
+}
+
+function scheduleLoop() {
+  if (!musicOn) return;
+  const now = audioCtx.currentTime;
+  const bpm = 126, beat = 60/bpm, bar = beat*4, bars = 8, len = bar*bars;
+  const M = makeMaster(1);
+
+  // Melody
+  const melG = audioCtx.createGain(); melG.gain.value = 0.2; melG.connect(M);
+  const melody = [
+    [587.33,0,0.18],[739.99,beat*0.5,0.18],[880,beat,0.22],[1046.5,beat*1.5,0.38],
+    [987.77,beat*2,0.18],[880,beat*2.5,0.18],[739.99,beat*3,0.18],[698.46,beat*3.5,0.18],
+    [659.25,bar,0.18],[622.25,bar+beat*0.5,0.18],[587.33,bar+beat,0.18],[523.25,bar+beat*1.5,0.38],
+    [587.33,bar+beat*2,0.18],[622.25,bar+beat*2.5,0.18],[659.25,bar+beat*3,0.38],
+    [698.46,bar*2,0.18],[739.99,bar*2+beat*0.5,0.18],[880,bar*2+beat,0.18],[987.77,bar*2+beat*1.5,0.18],
+    [1046.5,bar*2+beat*2,0.45],[987.77,bar*2+beat*2.5,0.18],[880,bar*2+beat*3,0.18],[739.99,bar*2+beat*3.5,0.18],
+    [698.46,bar*3,0.22],[659.25,bar*3+beat*0.5,0.18],[587.33,bar*3+beat,0.18],[523.25,bar*3+beat*1.5,0.18],
+    [493.88,bar*3+beat*2,0.48],[523.25,bar*3+beat*3,0.18],[587.33,bar*3+beat*3.5,0.18],
+    [659.25,bar*4,0.18],[739.99,bar*4+beat*0.5,0.18],[880,bar*4+beat,0.22],[987.77,bar*4+beat*1.5,0.18],
+    [1046.5,bar*4+beat*2,0.5],[987.77,bar*4+beat*2.5,0.18],[880,bar*4+beat*3,0.18],[739.99,bar*4+beat*3.5,0.18],
+    [698.46,bar*5,0.18],[659.25,bar*5+beat*0.5,0.18],[587.33,bar*5+beat,0.35],[523.25,bar*5+beat*1.5,0.18],
+    [493.88,bar*5+beat*2,0.18],[523.25,bar*5+beat*2.5,0.18],[587.33,bar*5+beat*3,0.35],
+    [659.25,bar*6,0.18],[698.46,bar*6+beat*0.5,0.18],[739.99,bar*6+beat,0.18],[880,bar*6+beat*1.5,0.18],
+    [987.77,bar*6+beat*2,0.18],[1046.5,bar*6+beat*2.5,0.18],[1174.66,bar*6+beat*3,0.55],
+    [1046.5,bar*7,0.18],[987.77,bar*7+beat*0.5,0.18],[880,bar*7+beat,0.18],[739.99,bar*7+beat*1.5,0.18],
+    [659.25,bar*7+beat*2,0.65],
+  ];
+  melody.forEach(([f,t,d]) => tone(f, now+t, d, 'square', 0.55, melG));
+
+  // Bass
+  const bassG = audioCtx.createGain(); bassG.gain.value = 0.35; bassG.connect(M);
+  [[146.83,0],[146.83,beat],[164.81,bar],[164.81,bar+beat],[146.83,bar*2],[185,bar*2+beat*2],
+   [174.61,bar*3],[196,bar*3+beat*2],[146.83,bar*4],[146.83,bar*4+beat],[164.81,bar*5],
+   [185,bar*5+beat*2],[146.83,bar*6],[164.81,bar*6+beat],[185,bar*6+beat*2],[207.65,bar*6+beat*3],
+   [146.83,bar*7],[146.83,bar*7+beat*2]].forEach(([f,t]) => tone(f, now+t, beat*0.8, 'sawtooth', 0.65, bassG));
+
+  // Pads
+  const padG = audioCtx.createGain(); padG.gain.value = 0.07; padG.connect(M);
+  [[293.66,0,bar],[329.63,bar,bar],[293.66,bar*2,bar],[349.23,bar*3,bar],
+   [293.66,bar*4,bar],[329.63,bar*5,bar],[293.66,bar*6,bar*0.5],[329.63,bar*6+bar*0.5,bar*0.5],[293.66,bar*7,bar]]
+  .forEach(([f,t,d]) => tone(f, now+t, d*0.9, 'sine', 0.5, padG));
+
+  // Drums
+  const drumG = audioCtx.createGain(); drumG.gain.value = 1; drumG.connect(M);
+  for (let b = 0; b < bars*4; b++) {
+    const t = now + b*beat;
+    hihat(t, false, drumG);
+    if (b%4===0) kick(t, drumG);
+    if (b%4===2) snare(t, drumG);
+    if (b%2===1) hihat(t+beat*0.5, true, drumG);
+  }
+
+  loopTimer = setTimeout(scheduleLoop, (len - 0.1)*1000);
+}
+
+function stopMusic() {
+  musicOn = false;
+  clearTimeout(loopTimer);
+  musicNodes.forEach(n => { try { n.stop(); } catch(e){} });
+  musicNodes = [];
+}
+
+function toggleMusic() {
+  initCtx();
+  const btn = document.getElementById('musicBtn');
+  if (musicOn) {
+    stopMusic();
+    btn.textContent = '▶ PLAY MUSIC';
+    btn.classList.remove('active');
+  } else {
+    musicOn = true;
+    scheduleLoop();
+    btn.textContent = '⏸ PAUSE MUSIC';
+    btn.classList.add('active');
+  }
+}
+
+function sfxCorrect() {
+  initCtx();
+  const now = audioCtx.currentTime, g = makeMaster(0.35);
+  [[523.25,0],[659.25,0.08],[783.99,0.16],[1046.5,0.24]].forEach(([f,t]) => tone(f,now+t,0.18,'square',0.5,g));
+}
+function sfxStrike() {
+  initCtx();
+  const now = audioCtx.currentTime, g = makeMaster(0.45);
+  [220,175,140].forEach((f,i) => tone(f, now+i*0.12, 0.22, 'sawtooth', 0.55, g));
+}
+function sfxReveal() {
+  initCtx();
+  const now = audioCtx.currentTime, g = makeMaster(0.28);
+  tone(1046.5, now, 0.14, 'sine', 0.75, g);
+  tone(1318.5, now+0.1, 0.18, 'sine', 0.75, g);
+}
+
+// ── START ─────────────────────────────────────────────────────────────────────
+initGame();
+</script>
+</body>
+</html>

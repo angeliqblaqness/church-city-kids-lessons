@@ -372,6 +372,20 @@ footer{margin-top:50px;color:var(--muted);font-size:.8rem;border-top:1px solid v
   <div class="tn"><b>Group prayer:</b> thank God for making us new creations when we trust in Jesus; ask for strength to replace sinful thoughts and actions with ones that please him. Take requests if time allows. Then a review game of your choice.</div>
 </section>
 
+<!-- ───────── 9 · BIBLE FEUD ───────── -->
+<section class="s" id="s9">
+  <h2><span class="num">9</span>Bible Feud</h2>
+  <p class="read">Two teams. Survey says. Three strikes and the other team can steal. Twelve rounds on everything from today, from Paul's shipwreck to the big word at the end.</p>
+  <div class="card" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between">
+    <div>
+      <div class="mono gold">Warm-up · Grades 4–5 · Challenge</div>
+      <p style="margin:6px 0 0">Opens full screen for the projector. Pick a tier at the top, or play all twelve rounds.</p>
+    </div>
+    <a class="btn" href="bible-feud-lesson189.html">Play Bible Feud ▸</a>
+  </div>
+  <div class="tn"><b>How to run it:</b> split the room into two teams. Read the question, let the active team guess; tap a tile when they name an answer on the board, tap Strike when they miss. Three strikes = the other team gets one guess to steal, then Award the points. Reveal All shows what they missed. The music button plays a loop; mute it if it's too much.</div>
+</section>
+
 <footer>Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard Version®), © 2001 by Crossway. Used by permission. All rights reserved. Built for classroom use at Church City Kids; follows the Lesson 189 teaching outline.</footer>
 </div>
 
@@ -576,7 +590,7 @@ $("#th-print").onclick=()=>window.print();
 
 /* ───────────────────────── chrome ───────────────────────── */
 function updateHUD(){ $("#hud-clean").textContent=`${cleanCount()} / 6`; $("#hud-verse").textContent=S.verse?"✔":"—"; $("#hud-quiz").textContent=S.quiz.asked?`${S.quiz.right}/${S.quiz.asked}`:"—"; $$("#dots a").forEach(a=>{ const n=+a.dataset.n; if(n>=1&&n<=6) a.classList.toggle("done",!!S.done[n-1]); if(n===7) a.classList.toggle("done",!!S.verse); if(n===8) a.classList.toggle("done",S.quiz.asked===QUIZ.length); }); }
-const NAMES=["Start","Put off","Above","Take off","Put on","The swap","Made new","Verse","Review"];
+const NAMES=["Start","Put off","Above","Take off","Put on","The swap","Made new","Verse","Review","Feud"];
 $("#dots").innerHTML=NAMES.map((n,i)=>`<a href="#s${i}" data-n="${i}"><i></i>${n}</a>`).join("");
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ $$("#dots a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)); } }),{rootMargin:"-40% 0px -55% 0px"});
 $$("header, section.s").forEach(s=>io.observe(s));
