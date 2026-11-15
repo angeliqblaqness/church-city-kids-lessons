@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Put Off, Put On · Lesson 189</title>
+<meta name="description" content="Paul Writes from Prison: an interactive Grades 4–5 lesson on putting off the old self and putting on the new self (Ephesians 4, Colossians 3).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,500;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1226; --bg2:#171b38; --card:#1d2246; --line:rgba(255,255,255,.1);
+  --ink:#f4efe6; --muted:#aab0cc; --gold:#f5c242; --gold2:#ffd97a; --sky:#56c6ff; --mint:#5fe3a1; --rose:#ff7a9c; --mud:#6b4a2b; --mud2:#4a2f17;
+  --r:22px; --shadow:0 18px 50px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:20px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(900px 500px at 10% -10%,rgba(245,194,66,.12),transparent 60%),radial-gradient(800px 500px at 100% 0,rgba(86,198,255,.12),transparent 60%);pointer-events:none;z-index:0}
+h1,h2,h3,.disp{font-family:Fredoka,Nunito,sans-serif;letter-spacing:.2px}
+h1{font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.02;margin:.2em 0}
+h2{font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.1;margin:.1em 0 .3em}
+h3{font-size:1.35rem;margin:.2em 0}
+p{margin:.5em 0}
+a{color:var(--sky)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 16px 80px}
+.gold{color:var(--gold)} .sky{color:var(--sky)} .mint{color:var(--mint)} .rose{color:var(--rose)} .muted{color:var(--muted)}
+.mono{font-family:ui-monospace,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem}
+.btn{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;border-radius:999px;padding:14px 26px;background:var(--gold);color:#1a1300;box-shadow:0 8px 0 #9a7418,0 16px 30px rgba(0,0,0,.35);transition:transform .08s,box-shadow .08s;text-decoration:none;display:inline-block}
+.btn:active{transform:translateY(5px);box-shadow:0 3px 0 #9a7418}
+.btn.alt{background:var(--bg2);color:var(--ink);box-shadow:0 8px 0 #090b1c,0 16px 30px rgba(0,0,0,.35);border:1px solid var(--line)}
+.btn.alt:active{box-shadow:0 3px 0 #090b1c}
+.btn.sm{padding:9px 16px;font-size:.9rem;box-shadow:0 5px 0 #9a7418}
+.btn.sm.alt{box-shadow:0 5px 0 #090b1c}
+.btn[disabled]{opacity:.45;cursor:default;transform:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px}
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(15,18,38,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.top .brand{font-family:Fredoka;font-weight:700;color:var(--gold);white-space:nowrap}
+.dots{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.dots a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--muted);font-size:.8rem;padding:6px 10px;border-radius:999px;border:1px solid transparent}
+.dots a.on{color:var(--ink);border-color:var(--line);background:rgba(255,255,255,.05)}
+.dots a i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);display:inline-block}
+.dots a.done i{background:var(--mint)}
+.hud{display:flex;gap:8px;align-items:center}
+.hud .tile{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:6px 12px;font-size:.78rem;color:var(--muted);line-height:1.2;text-align:center}
+.hud .tile b{display:block;color:var(--gold);font-family:Fredoka;font-size:1.2rem}
+.switch{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);cursor:pointer;user-select:none}
+.switch input{appearance:none;width:44px;height:26px;border-radius:999px;background:#2a2f5a;position:relative;transition:.2s;cursor:pointer;margin:0}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.switch input:checked{background:var(--mint)} .switch input:checked::after{left:21px}
+/* hero */
+.hero{padding:44px 0 18px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.hero .kicker{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.8rem;color:var(--muted);background:rgba(255,255,255,.04)}
+.pill.g{border-color:rgba(245,194,66,.5);color:var(--gold)}
+.verse{border-left:4px solid var(--gold);padding:8px 16px;margin:16px 0;background:rgba(245,194,66,.06);border-radius:0 14px 14px 0}
+.verse q{quotes:"“" "”";font-style:italic}
+.verse .ref{font-size:.85rem;color:var(--gold)}
+/* video block */
+.lv{margin:14px 0 22px;border:1px solid rgba(245,194,66,.45);border-radius:18px;overflow:hidden;background:#07080f;box-shadow:var(--shadow)}
+.lv-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;color:var(--gold)}
+.lv-sub{color:var(--muted);letter-spacing:.02em;text-transform:none;font-size:.78rem}
+.lv video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+/* sections */
+section.s{padding:40px 0 10px;border-top:1px solid var(--line);margin-top:30px}
+.num{display:inline-flex;width:44px;height:44px;border-radius:14px;background:var(--gold);color:#1a1300;font-family:Fredoka;font-weight:700;font-size:1.3rem;align-items:center;justify-content:center;margin-right:12px;vertical-align:middle}
+.read{font-size:1.12em}
+.tn{display:none;margin:12px 0;padding:12px 16px;border-radius:14px;background:rgba(95,227,161,.08);border:1px dashed rgba(95,227,161,.45);color:#cfeedd;font-size:.92rem}
+.tn b{color:var(--mint)}
+body.teacher .tn{display:block}
+.scrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:14px 0}
+.scrip .v{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:.98rem}
+.scrip .v .ref{color:var(--gold);font-weight:800;font-size:.8rem;letter-spacing:.08em}
+.scrip mark{background:transparent;color:var(--gold2);font-weight:800;border-bottom:3px solid var(--gold);padding:0 1px}
+.scrip mark.m{color:#e6b58a;border-color:var(--mud)}
+/* changing room */
+.room{display:grid;grid-template-columns:380px 1fr;gap:22px;align-items:stretch;margin:18px 0 8px}
+.stage{position:relative;background:linear-gradient(180deg,#232a5c,#141838 70%);border:1px solid var(--line);border-radius:var(--r);padding:12px;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;overflow:hidden}
+.stage::before{content:"";position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,transparent,rgba(0,0,0,.35))}
+.stage .floor{position:absolute;left:8%;right:8%;bottom:34px;height:22px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(4px)}
+.stage svg{position:relative;width:260px;height:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.45));transform:translateX(-54px)}
+.stage .tag{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:8px;font-size:.75rem;color:var(--muted)}
+.stage .tag b{color:var(--gold)}
+.chips{position:absolute;right:12px;top:44px;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.chip{font-size:.72rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--muted)}
+.chip.on{color:#1a1300;background:var(--gold);border-color:var(--gold);font-weight:800}
+.chip.off{color:#e6b58a;border-color:var(--mud)}
+.beat{display:flex;flex-direction:column;gap:12px}
+.sit{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.sit .lab{color:var(--sky)}
+.sit .q{font-size:1.25rem;font-weight:800;margin-top:4px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:center;text-align:left;border:2px solid var(--line);background:var(--bg2);color:var(--ink);border-radius:16px;padding:14px 16px;font:inherit;cursor:pointer;transition:transform .08s,border-color .15s,background .15s}
+.opt:hover{border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
+.opt .k{flex:0 0 42px;height:42px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;font-family:Fredoka;font-weight:700;background:rgba(255,255,255,.08)}
+.opt.picked-on{border-color:var(--mint);background:rgba(95,227,161,.1)}
+.opt.picked-off{border-color:var(--rose);background:rgba(255,122,156,.1)}
+.opt.picked-rem{border-color:var(--gold);background:rgba(245,194,66,.08)}
+.opt[disabled]{cursor:default;opacity:.55}
+.opt.picked-on[disabled],.opt.picked-off[disabled],.opt.picked-rem[disabled]{opacity:1}
+.verdict{display:none;border-radius:16px;padding:14px 18px;border:1px solid var(--line);background:rgba(0,0,0,.25)}
+.verdict.show{display:block;animation:pop .35s}
+.verdict .v-ref{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.verdict.on{border-color:rgba(95,227,161,.5)} .verdict.off{border-color:rgba(255,122,156,.5)} .verdict.rem{border-color:rgba(245,194,66,.5)}
+.again{margin-top:10px}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px) rotate(-2deg)}40%{transform:translateX(9px) rotate(2deg)}60%{transform:translateX(-6px)}80%{transform:translateX(5px)}}
+.stage.shake svg{animation:shake .55s}
+@keyframes sparkle{0%{opacity:0;transform:scale(.3)}40%{opacity:1}100%{opacity:0;transform:scale(1.6) rotate(40deg)}}
+.spark{position:absolute;width:26px;height:26px;pointer-events:none;animation:sparkle .9s forwards;background:var(--gold2);clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%)}
+@keyframes splat{0%{transform:scale(0);opacity:0}60%{transform:scale(1.25);opacity:1}100%{transform:scale(1);opacity:1}}
+.splat{animation:splat .4s both;transform-box:fill-box;transform-origin:center}
+/* class notes games */
+.notes{margin:18px 0}
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:12px 0}
+.word{display:flex;gap:5px;flex-wrap:wrap;align-items:center;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.03);border:2px solid var(--line);cursor:pointer}
+.word.cur{border-color:var(--sky)} .word.ok{border-color:var(--mint);background:rgba(95,227,161,.08)} .word.bad{border-color:var(--rose)}
+.word .l{width:36px;height:44px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-family:Fredoka;font-weight:700;font-size:1.3rem;background:rgba(255,255,255,.06)}
+.word .l.b{background:rgba(86,198,255,.12);border:2px dashed rgba(86,198,255,.6);color:var(--sky)}
+.word .l.b.f{border-style:solid;color:var(--ink)}
+.word .sp{width:14px}
+.vowels{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.vowels .btn{min-width:60px;font-family:Fredoka;font-size:1.3rem}
+.match{display:grid;grid-template-columns:1fr 60px 1fr;gap:10px;position:relative;margin:12px 0}
+.match .col{display:flex;flex-direction:column;gap:10px}
+.match .m{font:inherit;font-weight:800;border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;color:var(--ink);background:var(--bg2);text-align:left}
+.match .m.left{border-color:rgba(107,74,43,.9);background:rgba(107,74,43,.22)}
+.match .m.right{border-color:rgba(245,194,66,.6);background:rgba(245,194,66,.08)}
+.match .m.sel{outline:3px solid var(--sky)}
+.match .m.done{opacity:.55;outline:0;border-color:var(--mint)}
+.match svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+/* verse tree */
+.tree-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch;margin:14px 0}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.tile{font:inherit;font-weight:800;border:2px solid var(--line);background:var(--bg2);color:var(--ink);border-radius:12px;padding:8px 12px;cursor:pointer}
+.tile.used{opacity:.28;cursor:default;border-style:dashed}
+.tile.wrong{animation:shake .4s;border-color:var(--rose)}
+.built{min-height:72px;padding:12px 14px;border-radius:14px;background:rgba(245,194,66,.06);border:1px solid rgba(245,194,66,.4);font-style:italic;font-size:1.1rem;margin-bottom:12px}
+.treebox{background:linear-gradient(180deg,#1b2a4a,#0f1a2e 70%);border:1px solid var(--line);border-radius:var(--r);display:flex;align-items:flex-end;justify-content:center;overflow:hidden;min-height:360px}
+.treebox svg{width:100%;height:auto}
+.hide-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.sayit{font-size:1.35rem;line-height:1.6;font-style:italic;padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.sayit .h{display:inline-block;min-width:70px;border-bottom:3px solid var(--gold);color:transparent;cursor:pointer}
+.sayit .h.r{color:var(--gold2)}
+/* quiz */
+.qz{margin:12px 0;padding:18px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.qz .qq{font-weight:800;font-size:1.15rem}
+.qz .qo{display:grid;gap:8px;margin-top:10px}
+.qz .qo button{font:inherit;text-align:left;border:2px solid var(--line);background:var(--bg2);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer}
+.qz .qo button.ok{border-color:var(--mint);background:rgba(95,227,161,.12)}
+.qz .qo button.no{border-color:var(--rose);background:rgba(255,122,156,.1)}
+.qz .why{display:none;margin-top:8px;color:var(--muted);font-size:.95rem}
+.qz.answered .why{display:block}
+/* take home */
+.home{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.home label{display:block;font-size:.85rem;color:var(--muted);margin-top:10px}
+.home input{width:100%;font:inherit;font-size:1.05rem;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink)}
+.homecard{background:#fffaf0;color:#2b2416;border-radius:18px;padding:22px;font-family:Nunito;box-shadow:var(--shadow)}
+.homecard h3{color:#8a6414;font-family:Fredoka}
+.homecard .ln{border-bottom:2px solid #c9b27a;min-height:34px;font-size:1.1rem;font-weight:800;padding:4px 2px}
+.final{display:none;margin:18px 0;padding:22px;border-radius:var(--r);border:1px solid rgba(245,194,66,.5);background:linear-gradient(135deg,rgba(245,194,66,.12),rgba(86,198,255,.08))}
+.final.show{display:block;animation:pop .4s}
+footer{margin-top:50px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:860px){
+  .hero,.room,.tree-wrap,.home{grid-template-columns:1fr}
+  .stage{min-height:340px} .stage svg{width:200px;transform:translateX(-50px)}
+  body{font-size:18px}
+  .match{grid-template-columns:1fr 34px 1fr}
+  .top .in{padding:8px 12px;gap:8px}
+  .top .brand{font-size:.95rem}
+  .dots{order:5;flex:1 0 100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .dots::-webkit-scrollbar{display:none}
+  .dots a{white-space:nowrap;padding:4px 9px;font-size:.74rem}
+  .hud{margin-left:auto;gap:5px} .hud .tile{padding:3px 7px;font-size:.62rem} .hud .tile b{font-size:.95rem}
+  .switch{font-size:0} .switch input{width:38px;height:22px} .switch input::after{width:16px;height:16px}
+  .switch input:checked::after{left:19px}
+}
+@media print{
+  body{background:#fff;color:#000;font-size:12pt} .top,.lv,.room,.notes,.tree-wrap,.qz,.final,.btn,footer,.hero,section.s:not(#s8),.tn,#quiz,.home>.card{display:none!important}
+  section.s{border:0;margin:0;padding:0} .homecard{box-shadow:none;border:2px solid #c9b27a;color:#000} .home{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="top"><div class="in">
+  <span class="brand">✝ Church City Kids</span>
+  <nav class="dots" id="dots"></nav>
+  <div class="hud">
+    <div class="tile">Clean pieces<b id="hud-clean">0 / 6</b></div>
+    <div class="tile">Verse<b id="hud-verse">—</b></div>
+    <div class="tile">Quiz<b id="hud-quiz">—</b></div>
+  </div>
+  <label class="switch"><input type="checkbox" id="teacher"> Teacher notes</label>
+</div></div>
+
+<div class="wrap">
+
+<!-- ───────── HERO ───────── -->
+<header class="hero" id="s0">
+  <div>
+    <div class="kicker"><span class="pill g">Lesson 189 · Grades 4–5</span><span class="pill">Unit 19 · Paul Writes from Prison</span><span class="pill">≈ 45 min</span></div>
+    <h1>Put Off, <span class="gold">Put On</span></h1>
+    <p class="read">While Paul sat chained in Rome, he wrote letters to churches far away. He told them something you do every morning: <b>change your clothes.</b> Take off the old self. Put on the new.</p>
+    <div class="verse"><div class="ref">MEMORY VERSE · Colossians 2:6–7</div>
+      <q>Therefore, as you received Christ Jesus the Lord, so walk in him, rooted and built up in him and established in the faith, just as you were taught, abounding in thanksgiving.</q></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+      <a class="btn" href="#s1">Start the lesson ▸</a>
+      <a class="btn alt" href="#s7">Memory verse game</a>
+    </div>
+    <div class="tn"><b>Teacher:</b> this page is built to run on the big screen. Read the bold lines aloud, play each clip, then let the class vote on the Changing Room choices by show of hands and tap the winner. Every section has a <b>Teacher notes</b> box like this one with the answers. Toggle it off before the kids see the screen.</div>
+  </div>
+  <div>
+    <div class="lv"><div class="lv-head mono"><span>▶ Watch first · the story</span><span class="lv-sub">≈ 1 min 50</span></div>
+      <video controls preload="metadata" playsinline src="video/pop-film.mp4"></video></div>
+    <div class="tn"><b>Before the film:</b> point to Paul's Journeys Map. "We've been following Paul to Rome. How was this trip different from the first three?" <i>(He was a prisoner.)</i> "What caused the shipwreck?" <i>(A terrible storm.)</i> "What did Paul do with his visitors?" <i>(Told them the gospel.)</i></div>
+  </div>
+</header>
+
+<!-- ───────── 1 · PUT OFF THE OLD SELF ───────── -->
+<section class="s" id="s1">
+  <h2><span class="num">1</span>Put off the old self</h2>
+  <p class="read">Ever played outside until you were so sweaty and muddy you couldn't <i>wait</i> to change? Paul says that's how a Christian should feel about sin. Get the dirty stuff off. But that's only half of it: you have to put something clean on.</p>
+  <div class="lv"><div class="lv-head mono"><span>▶ Watch · Ephesians 4:20–24</span><span class="lv-sub">then try it yourself</span></div>
+    <video controls preload="metadata" playsinline src="video/pop-off.mp4"></video></div>
+  <div class="scrip">
+    <div class="v"><div class="ref">EPHESIANS 4:22–24</div>…to <mark class="m">put off your old self</mark>, which belongs to your former manner of life and is <mark class="m">corrupt</mark> through deceitful desires, and to be <mark>renewed in the spirit of your minds</mark>, and to <mark>put on the new self</mark>, created after the likeness of God in true <mark>righteousness</mark> and <mark>holiness</mark>.</div>
+    <div class="v"><div class="ref">CLASS NOTES · ROW 1</div>Put off the old self. It is <b class="rose">C _ R R _ P T</b> (spoiled, rotten). Put on the new self. It is righteous and <b class="gold">H _ L Y</b>.</div>
+  </div>
+  <div class="tn"><b>Answers:</b> corrupt · holy. "Where does Paul say truth is found?" <i>(In Jesus, v. 21.)</i> "What is the key to changing?" <i>(Renewed in the spirit of your minds, v. 23.)</i> Have students underline those phrases on their Scripture Sheet.</div>
+  <div class="room" data-beat="0"></div>
+</section>
+
+<!-- ───────── 2 · SET YOUR MIND ABOVE ───────── -->
+<section class="s" id="s2">
+  <h2><span class="num">2</span>Set your mind above</h2>
+  <p class="read">Paul wrote the same idea to the Colossians, and he told them <b>where to point their minds.</b></p>
+  <div class="lv"><div class="lv-head mono"><span>▶ Watch · Colossians 3:1–2</span><span class="lv-sub">then try it yourself</span></div>
+    <video controls preload="metadata" playsinline src="video/pop-above.mp4"></video></div>
+  <div class="scrip">
+    <div class="v"><div class="ref">COLOSSIANS 3:1–2</div>If then you have been raised with Christ, <mark>seek the things that are above</mark>, where Christ is, seated at the right hand of God. <mark>Set your minds on things that are above</mark>, <mark class="m">not on things that are on earth</mark>.</div>
+    <div class="v"><div class="ref">CLASS NOTES · ROW 2</div>To put off the old self, don't set your mind on things on <b class="rose">E _ R T H</b>. To put on the new self, set your mind on things <b class="gold">A B _ V E</b>.</div>
+  </div>
+  <div class="tn"><b>Answers:</b> earth · above. "Things on earth" = sins like greed, selfish desires, impurity. Ask: "Does becoming a child of God mean you can put off everything sinful right away?" <i>Allow discussion; the new self is <b>being</b> renewed: a process.</i></div>
+  <div class="room" data-beat="1"></div>
+</section>
+
+<!-- ───────── 3 · WHAT TO TAKE OFF ───────── -->
+<section class="s" id="s3">
+  <h2><span class="num">3</span>What to take off</h2>
+  <p class="read">Paul doesn't leave it vague. He names six muddy things.</p>
+  <div class="lv"><div class="lv-head mono"><span>▶ Watch · Colossians 3:8–10</span><span class="lv-sub">then fill in the vowels</span></div>
+    <video controls preload="metadata" playsinline src="video/pop-takeoff.mp4"></video></div>
+  <div class="scrip">
+    <div class="v"><div class="ref">COLOSSIANS 3:8–10</div>But now you must put them all away: <mark class="m">anger</mark>, <mark class="m">wrath</mark>, <mark class="m">malice</mark>, <mark class="m">slander</mark>, and <mark class="m">obscene talk</mark> from your mouth. Do not <mark class="m">lie</mark> to one another, seeing that you have put off the old self with its practices and have put on the new self, which is being renewed in knowledge after the image of its creator.</div>
+  </div>
+  <div class="notes card" id="vowels-off">
+    <h3>Class Notes · <span class="rose">PUT OFF</span> column · add the missing vowels</h3>
+    <p class="muted" style="font-size:.95rem">Tap a word, then tap the vowels in order. A · E · I · O · U.</p>
+    <div class="words"></div>
+    <div class="vowels"><button class="btn sm" data-v="A">A</button><button class="btn sm" data-v="E">E</button><button class="btn sm" data-v="I">I</button><button class="btn sm" data-v="O">O</button><button class="btn sm" data-v="U">U</button><button class="btn sm alt" data-act="undo">⌫ undo</button><button class="btn sm alt" data-act="check">Check</button></div>
+    <div class="muted" data-out></div>
+  </div>
+  <div class="tn"><b>Define as you go:</b> anger and wrath are losing your temper; malice = hatred; slander = saying false things about someone; obscene talk = dirty or inappropriate words; then lying. Ask which phrases match Ephesians <i>(put off the old self, put on the new self, renewed in knowledge/mind)</i>.</div>
+  <div class="room" data-beat="2"></div>
+</section>
+
+<!-- ───────── 4 · WHAT TO PUT ON ───────── -->
+<section class="s" id="s4">
+  <h2><span class="num">4</span>What to put on</h2>
+  <p class="read">Ever had a habit your parents wanted you to quit? Biting your nails, chewing with your mouth open, saying "like" every three words? If all you think about is <i>not</i> doing it, you keep doing it. You need something to <b>replace</b> it. Paul knew that.</p>
+  <div class="lv"><div class="lv-head mono"><span>▶ Watch · Colossians 3:12–14</span><span class="lv-sub">then fill in the vowels</span></div>
+    <video controls preload="metadata" playsinline src="video/pop-puton.mp4"></video></div>
+  <div class="scrip">
+    <div class="v"><div class="ref">COLOSSIANS 3:12–14</div>Put on then, as God's chosen ones, holy and beloved, <mark>compassionate</mark> hearts, <mark>kindness</mark>, <mark>humility</mark>, <mark>meekness</mark>, and <mark>patience</mark>, bearing with one another and, if one has a complaint against another, <mark>forgiving</mark> each other; as the Lord has forgiven you, so you also must forgive. And above all these put on <mark>love</mark>, which binds everything together in perfect harmony.</div>
+  </div>
+  <div class="notes card" id="vowels-on">
+    <h3>Class Notes · <span class="gold">PUT ON</span> column · add the missing vowels</h3>
+    <div class="words"></div>
+    <div class="vowels"><button class="btn sm" data-v="A">A</button><button class="btn sm" data-v="E">E</button><button class="btn sm" data-v="I">I</button><button class="btn sm" data-v="O">O</button><button class="btn sm" data-v="U">U</button><button class="btn sm alt" data-act="undo">⌫ undo</button><button class="btn sm alt" data-act="check">Check</button></div>
+    <div class="muted" data-out></div>
+  </div>
+  <div class="tn"><b>Ask:</b> "Why should believers forgive?" <i>(Because the Lord has forgiven us.)</i> "Which quality binds everything together?" <i>(Love.)</i> Meekness is close to humility, so the Class Notes skip it. Share your own bad-habit story here; what helped you stop?</div>
+  <div class="room" data-beat="3"></div>
+</section>
+
+<!-- ───────── 5 · THE SWAP ───────── -->
+<section class="s" id="s5">
+  <h2><span class="num">5</span>The swap</h2>
+  <p class="read">Back in Ephesians 4, Paul lines up opposites so you can see the trade. Every muddy thing has a clean thing that goes in its place.</p>
+  <div class="lv"><div class="lv-head mono"><span>▶ Watch · Ephesians 4:25–32</span><span class="lv-sub">then match the opposites</span></div>
+    <video controls preload="metadata" playsinline src="video/pop-swap.mp4"></video></div>
+  <div class="scrip">
+    <div class="v"><div class="ref">EPHESIANS 4:25–29</div>Having put away <mark class="m">falsehood</mark>, let each one of you <mark>speak the truth</mark> with his neighbor… Be angry and do not sin; do not let the sun go down on your anger… Let the thief no longer <mark class="m">steal</mark>, but rather let him labor, doing <mark>honest work</mark> with his own hands, so that he may have something to share with anyone in need. Let no <mark class="m">corrupting talk</mark> come out of your mouths, but only such as is good for <mark>building up</mark>…</div>
+    <div class="v"><div class="ref">EPHESIANS 4:31–32</div>Let all <mark class="m">bitterness</mark> and wrath and anger and <mark class="m">clamor</mark> and slander be put away from you, along with all malice. Be <mark>kind</mark> to one another, <mark>tenderhearted</mark>, <mark>forgiving</mark> one another, as God in Christ forgave you.</div>
+  </div>
+  <div class="notes card" id="matchbox">
+    <h3>Class Notes · match each <span class="rose">PUT OFF</span> to its <span class="gold">PUT ON</span></h3>
+    <p class="muted" style="font-size:.95rem">Tap a muddy word, then tap its clean opposite.</p>
+    <div class="match"><div class="col" data-side="l"></div><div></div><div class="col" data-side="r"></div><svg></svg></div>
+    <div class="muted" data-out></div>
+  </div>
+  <div class="tn"><b>New words here:</b> bitterness = unforgiveness, holding on to old hurts; clamor = an outburst, a tantrum, the slammed door. "What do you have to do to not go to bed angry?" <i>(Forgive them.)</i> "Why forgive?" <i>(Because Christ forgave us.)</i></div>
+  <div class="room" data-beat="4"></div>
+</section>
+
+<!-- ───────── 6 · NEW, AND BEING MADE NEW ───────── -->
+<section class="s" id="s6">
+  <h2><span class="num">6</span>New, and being made new</h2>
+  <p class="read">Here's the part you can't skip. Being kind and forgiving <b>does not save you.</b> Jesus does. God makes you alive in Christ by grace, through faith. <i>Then</i> you get to change your clothes, every day, for the rest of your life. That has a name.</p>
+  <div class="lv"><div class="lv-head mono"><span>▶ Watch · sanctification</span><span class="lv-sub">the last piece</span></div>
+    <video controls preload="metadata" playsinline src="video/pop-new.mp4"></video></div>
+  <div class="scrip">
+    <div class="v"><div class="ref">2 CORINTHIANS 5:17</div>Therefore, if anyone is in Christ, he is a <mark>new creation</mark>. The old has passed away; behold, the new has come.</div>
+    <div class="v"><div class="ref">THE BIG WORD</div><b class="gold disp" style="font-size:1.5rem">Sanctification</b><br>the process of becoming more like Jesus</div>
+  </div>
+  <div class="tn"><b>Make it land:</b> we cannot make ourselves new; God does, through the Holy Spirit. Once new, we can and should put off the old and put on the righteous thoughts and actions of Jesus. Ask for <i>other</i> worldly things to put off and what to put on instead (video games, videos, how we talk to family this week). Suggest accountability with a parent or friend.</div>
+  <div class="room" data-beat="5"></div>
+  <div class="final" id="final"></div>
+</section>
+
+<!-- ───────── 7 · MEMORY VERSE ───────── -->
+<section class="s" id="s7">
+  <h2><span class="num">7</span>Memory verse · <span class="gold">rooted and built up</span></h2>
+  <p class="read">Colossians 2:6–7. Tap the words in order. Every right word grows the tree's roots, because that's what the verse says: <i>rooted and built up in him.</i></p>
+  <div class="tree-wrap">
+    <div>
+      <div class="built" id="built">…</div>
+      <div class="tiles" id="tiles"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn sm alt" id="verse-reset">Shuffle &amp; restart</button></div>
+      <div id="sayit-box" style="display:none;margin-top:16px">
+        <h3>Now say it together</h3>
+        <p class="muted" style="font-size:.95rem">Hide some words and let the class fill them in out loud. Tap a blank to peek.</p>
+        <div class="sayit" id="sayit"></div>
+        <div class="hide-row"><button class="btn sm" data-hide="3">Hide 3</button><button class="btn sm" data-hide="6">Hide 6</button><button class="btn sm" data-hide="12">Hide 12</button><button class="btn sm alt" data-hide="all">Hide everything</button><button class="btn sm alt" data-hide="0">Show all</button></div>
+      </div>
+    </div>
+    <div class="treebox"><svg id="tree" viewBox="0 0 600 560"></svg></div>
+  </div>
+  <div class="tn"><b>Explain the verse first:</b> "received Christ" = trusted him; "walk in him" = live his way every day; "rooted" = a tree that won't blow over; "built up" = a house going up a brick at a time; "abounding in thanksgiving" = overflowing with thank-yous. Play the memory verse song if you have it.</div>
+</section>
+
+<!-- ───────── 8 · REVIEW + TAKE HOME ───────── -->
+<section class="s" id="s8">
+  <h2><span class="num">8</span>Review &amp; take it home</h2>
+  <p class="read">Eight quick questions. Vote by show of hands, then tap the class's answer.</p>
+  <div id="quiz"></div>
+  <h3 style="margin-top:26px">Take-home card</h3>
+  <p class="muted">Fill it in together, then print it or snap a photo. One thing off, one thing on, this week.</p>
+  <div class="home">
+    <div class="card">
+      <label>My name</label><input id="th-name" placeholder="">
+      <label>This week I will PUT OFF…</label><input id="th-off" placeholder="e.g. snapping at my brother">
+      <label>…and PUT ON instead</label><input id="th-on" placeholder="e.g. a kind word before I answer">
+      <label>Who will I ask to check on me?</label><input id="th-who" placeholder="a parent, a friend, a teacher">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn sm" id="th-print">🖨 Print the card</button></div>
+    </div>
+    <div class="homecard" id="homecard">
+      <h3>Put Off, Put On · this week</h3>
+      <div style="color:#7a6a45;font-size:.8rem;letter-spacing:.1em">COLOSSIANS 3:1–14 · EPHESIANS 4:20–32</div>
+      <p style="font-size:.9rem;margin-top:8px">Name</p><div class="ln" data-mirror="th-name"></div>
+      <p style="font-size:.9rem">I will put off</p><div class="ln" data-mirror="th-off"></div>
+      <p style="font-size:.9rem">I will put on</p><div class="ln" data-mirror="th-on"></div>
+      <p style="font-size:.9rem">My check-in buddy</p><div class="ln" data-mirror="th-who"></div>
+      <p style="font-size:.85rem;margin-top:14px;font-style:italic">Memory verse: "Therefore, as you received Christ Jesus the Lord, so walk in him, rooted and built up in him and established in the faith, just as you were taught, abounding in thanksgiving." (Colossians 2:6–7)</p>
+      <p style="font-size:.85rem"><b>Family question:</b> When has someone forgiven you? How did it feel, and who could you forgive this week?</p>
+    </div>
+  </div>
+  <div class="tn"><b>Group prayer:</b> thank God for making us new creations when we trust in Jesus; ask for strength to replace sinful thoughts and actions with ones that please him. Take requests if time allows. Then a review game of your choice.</div>
+</section>
+
+<footer>Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard Version®), © 2001 by Crossway. Used by permission. All rights reserved. Built for classroom use at Church City Kids; follows the Lesson 189 teaching outline.</footer>
+</div>
+
+<script>
+/* ───────────────────────── state ───────────────────────── */
+const PIECES = ["shirt","cap","jacket","pants","shoes","belt"];
+const S = { pieces:{shirt:"mud",cap:"mud",jacket:"mud",pants:"mud",shoes:"mud",belt:"none"}, done:{}, verse:0, quiz:{right:0,asked:0} };
+const $ = (q,el=document)=>el.querySelector(q), $$=(q,el=document)=>[...el.querySelectorAll(q)];
+const cleanCount=()=>PIECES.filter(p=>S.pieces[p]==="clean").length;
+
+/* ───────────────────────── the kid ───────────────────────── */
+const COL = { shirt:"#ffd84d", cap:"#ff6b6b", jacket:"#5fe3a1", pants:"#3b7dd8", shoes:"#ffffff", belt:"#f5c242" };
+const SPL = { shirt:[[-30,-60,14],[22,-18,18],[-52,10,12],[40,44,16],[-10,20,9]], cap:[[-20,-196,10],[18,-204,8],[0,-186,6]], jacket:[[-84,-70,12],[84,-40,11],[-80,0,8],[86,10,9]], pants:[[-24,92,15],[30,128,13],[-30,60,9],[20,70,8]], shoes:[[-28,148,9],[30,150,10]], belt:[] };
+function kid(st){
+  const splat=(p)=> (st[p]==="clean"||st[p]==="none"||st[p]==="bare") ? "" : SPL[p].map(([x,y,r],i)=>`<g class="splat" style="animation-delay:${i*40}ms"><circle cx="${x}" cy="${y}" r="${r}" fill="#6b4a2b"/><circle cx="${x+r*.55}" cy="${y+r*.45}" r="${r*.5}" fill="#4a2f17"/></g>`).join("")
+     + (st[p]==="mud2" ? SPL[p].map(([x,y,r])=>`<circle class="splat" cx="${x-r}" cy="${y+r}" r="${r*.8}" fill="#4a2f17"/>`).join("") : "");
+  const c=(p,clean)=> st[p]==="clean"?clean: st[p]==="bare"?"none":(p==="shoes"?"#9d8a74":"#8c8f9c");
+  const bare=(p)=> st[p]==="bare" ? 'stroke="#56c6ff" stroke-dasharray="8 7" stroke-width="4"' : "";
+  return `<svg viewBox="-150 -240 300 420" xmlns="http://www.w3.org/2000/svg">
+  <g ${bare("pants")}><rect x="-46" y="30" width="40" height="116" rx="16" fill="${c("pants",COL.pants)}"/><rect x="6" y="30" width="40" height="116" rx="16" fill="${c("pants",COL.pants)}"/>${splat("pants")}</g>
+  <g ${bare("shoes")||'stroke="#222" stroke-width="3"'}><rect x="-56" y="136" width="56" height="24" rx="10" fill="${c("shoes",COL.shoes)}"/><rect x="0" y="136" width="56" height="24" rx="10" fill="${c("shoes",COL.shoes)}"/>${splat("shoes")}</g>
+  <g transform="rotate(18 -70 -80)"><rect x="-88" y="-80" width="36" height="112" rx="18" fill="${c("shirt",COL.shirt)}"/><circle cx="-70" cy="36" r="17" fill="#c58c5a"/></g>
+  <g transform="rotate(-18 70 -80)"><rect x="52" y="-80" width="36" height="112" rx="18" fill="${c("shirt",COL.shirt)}"/><circle cx="70" cy="36" r="17" fill="#c58c5a"/></g>
+  <g ${bare("shirt")}><rect x="-66" y="-96" width="132" height="136" rx="28" fill="${c("shirt",COL.shirt)}"/>${splat("shirt")}</g>
+  <g ${bare("jacket")}><path d="M-66 -92 L-104 -70 L-100 30 L-66 36 Z" fill="${c("jacket",COL.jacket)}"/><path d="M66 -92 L104 -70 L100 30 L66 36 Z" fill="${c("jacket",COL.jacket)}"/>${splat("jacket")}</g>
+  <g opacity="${st.belt==="clean"?1:0}"><rect x="-70" y="26" width="140" height="18" rx="6" fill="${COL.belt}" stroke="#7a5a12" stroke-width="3"/><rect x="-14" y="22" width="28" height="26" rx="5" fill="#7a5a12"/></g>
+  <circle cx="0" cy="-150" r="50" fill="#c58c5a"/>
+  <path d="M-50 -158 Q-40 -216 0 -214 Q40 -216 50 -158 Q30 -178 0 -180 Q-30 -178 -50 -158 Z" fill="#2b1a10"/>
+  <g ${bare("cap")}><path d="M-56 -184 Q0 -236 56 -184 L60 -176 L-60 -176 Z" fill="${c("cap",COL.cap)}"/><rect x="-8" y="-182" width="78" height="12" rx="6" fill="${c("cap",COL.cap)}"/>${splat("cap")}</g>
+  <circle cx="-18" cy="-152" r="5" fill="#222"/><circle cx="18" cy="-152" r="5" fill="#222"/>
+  ${cleanCount()>=3 ? '<path d="M-18 -132 Q0 -112 18 -132" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/>' : '<path d="M-16 -126 Q0 -138 16 -126" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/>'}
+  </svg>`;
+}
+
+/* ───────────────────────── the Changing Room beats ───────────────────────── */
+const BEATS = [
+ { piece:"shirt", virtue:"forgiveness", sin:"anger", lab:"Beat 1 · the shirt",
+   q:"Your little brother knocks your headphones off the desk and they snap. He says it was an accident.",
+   opts:[
+    {k:"off", t:"Yell at him and call him an idiot. He needs to know how mad you are.", ref:"Colossians 3:8", v:"Anger and wrath. That's the muddy shirt, and it just got worse. Paul says put them away."},
+    {k:"rem", t:"Say nothing. Give him the silent treatment all week so he learns.", ref:"Ephesians 4:26, 31", v:"You took the yelling off… and put nothing on. Silence isn't peace, it's bitterness, and the hole fills right back up with mud."},
+    {k:"on", t:"Tell him you're upset, breathe, then ask him to help you fix them.", ref:"Ephesians 4:32", v:"Truth about how you feel, and forgiveness on top. Clean shirt. 'Forgiving one another, as God in Christ forgave you.'"}
+   ]},
+ { piece:"cap", virtue:"things above", sin:"greed", lab:"Beat 2 · the cap",
+   q:"You got $20 for your birthday. Your friend's family can't afford the class field trip this month.",
+   opts:[
+    {k:"off", t:"Buy the game you wanted. It's your money.", ref:"Colossians 3:2", v:"Mind on things on earth. Greed splashed mud right on the cap."},
+    {k:"rem", t:"Don't buy the game, but keep the money 'just in case.' Maybe later.", ref:"Colossians 3:1", v:"You held back the greed, but you didn't aim at anything above. 'Later' is where good ideas go to disappear."},
+    {k:"on", t:"Chip in toward your friend's trip and keep it quiet.", ref:"Colossians 3:1–2", v:"Seek the things above. A clean cap, pointed up."}
+   ]},
+ { piece:"jacket", virtue:"meekness", sin:"slander", lab:"Beat 3 · the jacket",
+   q:"A kid in class says your drawing is trash, loud enough for everyone to hear.",
+   opts:[
+    {k:"off", t:"Tell everyone he cheated on the math test. He didn't, but he deserves it.", ref:"Colossians 3:8–9", v:"Slander and a lie in one move. The jacket is caked."},
+    {k:"rem", t:"Say nothing, glare at him, and shove past his desk on the way out.", ref:"Ephesians 4:31", v:"No words, but the wrath leaked out anyway. Taking off the insult isn't the same as putting on gentleness."},
+    {k:"on", t:"Say 'That hurt,' walk away, and later ask a friend what they honestly think of it.", ref:"Colossians 3:12", v:"Meekness is gentle strength. Clean jacket."}
+   ]},
+ { piece:"pants", virtue:"compassion", sin:"malice", lab:"Beat 4 · the pants",
+   q:"You're team captain. The slowest kid in the grade is the last one standing, and everyone's watching you.",
+   opts:[
+    {k:"off", t:"Tell the team out loud that this kid is going to make you lose.", ref:"Colossians 3:8", v:"Malice: wishing the worst on someone. Mud on the pants."},
+    {k:"rem", t:"Pick them last without a word and roll your eyes.", ref:"Colossians 3:12", v:"You didn't say anything cruel. You didn't put on anything kind either. The eye-roll did the talking."},
+    {k:"on", t:"Pick them next and put them in a spot where they can actually help.", ref:"Colossians 3:12", v:"Compassion and kindness. Clean pants."}
+   ]},
+ { piece:"shoes", virtue:"honest work", sin:"stealing", lab:"Beat 5 · the shoes",
+   q:"You find a $10 bill on the lunchroom floor. You saw it fall out of someone's pocket.",
+   opts:[
+    {k:"off", t:"Pocket it. Finders keepers, and nobody saw.", ref:"Ephesians 4:28", v:"Paul calls that stealing, even when nobody saw. Muddy shoes."},
+    {k:"rem", t:"Keep it for now and plan to give it back 'if they ask.'", ref:"Ephesians 4:25", v:"Off with the grabbing, but nothing honest put on. 'If they ask' is a lie you tell yourself."},
+    {k:"on", t:"Walk it over and hand it back.", ref:"Ephesians 4:28", v:"Honest hands, and something to share. Clean shoes."}
+   ]},
+ { piece:"belt", virtue:"love", sin:"lying", lab:"Beat 6 · the belt",
+   q:"You told your mom you cleaned your room. You didn't. She's walking down the hall to check.",
+   opts:[
+    {k:"off", t:"Double down. 'I did clean it! You just didn't look right.'", ref:"Colossians 3:9", v:"Do not lie to one another. No belt yet, and the mud is back."},
+    {k:"rem", t:"Blame your sister. She was in there too.", ref:"Ephesians 4:25, 31", v:"You dodged the lie by throwing slander. Nothing clean was put on."},
+    {k:"on", t:"Meet her in the hall: 'I didn't do it yet. I'm sorry. I'm going now.'", ref:"Ephesians 4:25 · Colossians 3:14", v:"Truth, owned before the door opened. And love, which binds everything together, is the belt that holds the outfit on."}
+   ]},
+];
+const KEY=["A","B","C"];
+function renderRoom(i, verdictHTML, pickedIdx, pickedKind){
+  const b=BEATS[i], room=$(`.room[data-beat="${i}"]`);
+  const chips = PIECES.map(p=>{ const st=S.pieces[p]; const bt=BEATS.find(x=>x.piece===p); return `<span class="chip ${st==="clean"?"on":st==="none"?"":"off"}">${p}${st==="clean"?" · "+bt.virtue:st==="none"?"":" · "+bt.sin}</span>`; }).join("");
+  room.innerHTML = `
+   <div class="stage" id="stage-${i}"><div class="tag"><span>THE CHANGING ROOM</span><b>${cleanCount()} / 6 clean</b></div><div class="chips">${chips}</div><div class="floor"></div>${kid(S.pieces)}</div>
+   <div class="beat">
+     <div class="sit"><div class="lab mono">${b.lab} · class vote</div><div class="q">${b.q}</div></div>
+     <div class="opts">${b.opts.map((o,k)=>`<button class="opt ${pickedIdx===k?"picked-"+o.k:""}" data-k="${k}" ${pickedIdx!=null?"disabled":""}><span class="k">${KEY[k]}</span><span>${o.t}</span></button>`).join("")}</div>
+     <div class="verdict ${verdictHTML?"show "+pickedKind:""}">${verdictHTML||""}</div>
+   </div>`;
+  $$(".opt",room).forEach(btn=>btn.onclick=()=>choose(i,+btn.dataset.k));
+  const again=$("[data-again]",room); if(again) again.onclick=()=>{ if(S.pieces[b.piece]!=="clean") S.pieces[b.piece]= b.piece==="belt"?"none":"mud"; renderRoom(i); };
+}
+function choose(i,k){
+  const b=BEATS[i], o=b.opts[k];
+  let html=`<div class="v-ref">${o.ref}</div><div>${o.v}</div>`;
+  if(o.k==="on"){ S.pieces[b.piece]="clean"; S.done[i]=true; }
+  else if(o.k==="off"){ S.pieces[b.piece]= b.piece==="belt"?"none":"mud2"; html+=`<button class="btn sm again" data-again>Run it back ↺</button>`; }
+  else { S.pieces[b.piece]= b.piece==="belt"?"none":"bare"; html+=`<button class="btn sm again" data-again>Run it back ↺</button>`; }
+  renderRoom(i,html,k,o.k);
+  const st=$(`#stage-${i}`);
+  if(o.k==="on"){ for(let n=0;n<10;n++){ const s=document.createElement("i"); s.className="spark"; s.style.left=(25+Math.random()*50)+"%"; s.style.top=(15+Math.random()*60)+"%"; s.style.animationDelay=(n*70)+"ms"; st.appendChild(s);} }
+  else if(o.k==="off"){ st.classList.add("shake"); }
+  else { setTimeout(()=>{ if(S.pieces[b.piece]==="bare"){ S.pieces[b.piece]="mud"; renderRoom(i,html+`<div class="muted" style="margin-top:8px;font-size:.9rem">…and the hole filled itself back up with mud. Replace, don't just remove.</div>`,k,o.k); } },1800); }
+  updateHUD(); checkFinal();
+}
+function checkFinal(){
+  const n=cleanCount(), f=$("#final");
+  if(n===6){ f.className="final show"; f.innerHTML=`<h3 class="gold">Fully changed. ✨</h3><p class="read">Six clean pieces, and the belt of love holding it all together. Now the part that matters most: <b>the clothes don't save you. Jesus does.</b> He gives the new self as a gift. We just keep putting it on, every morning, for the rest of our lives. That's sanctification.</p><p class="muted">Ask the class: which piece was the hardest to get clean? Why?</p>`; }
+  else if(Object.keys(S.done).length>=6){ f.className="final show"; f.innerHTML=`<h3 class="gold">Still being renewed.</h3><p class="read">${n} of 6 pieces clean. That's honest, and it's exactly what Paul said: the new self is <i>being</i> renewed. Scroll back to any muddy beat and run it back.</p>`; }
+}
+
+/* ───────────────────────── vowels ───────────────────────── */
+const VOW = new Set(["A","E","I","O","U"]);
+function vowelGame(root, words){
+  const box=$(".words",root), out=$("[data-out]",root);
+  const st = words.map(w=>({w, fill:[]})); let cur=0;
+  const blanksOf=(w)=>[...w].filter(ch=>VOW.has(ch)).length;
+  function draw(){
+    box.innerHTML = st.map((s,i)=>{ let bi=0; return `<div class="word ${i===cur?"cur":""} ${s.ok===true?"ok":s.ok===false?"bad":""}" data-i="${i}">${[...s.w].map(ch=>{ if(ch===" ") return `<span class="sp"></span>`; if(VOW.has(ch)){ const f=s.fill[bi++]; return `<span class="l b ${f?"f":""}">${f||""}</span>`; } return `<span class="l">${ch}</span>`; }).join("")}</div>`; }).join("");
+    $$(".word",box).forEach(el=>el.onclick=()=>{cur=+el.dataset.i; draw();});
+  }
+  $$("[data-v]",root).forEach(b=>b.onclick=()=>{ const s=st[cur]; if(s.fill.length<blanksOf(s.w)){ s.fill.push(b.dataset.v); s.ok=undefined; if(s.fill.length===blanksOf(s.w)){ const nx=st.findIndex((x,i)=>i>cur&&x.fill.length<blanksOf(x.w)); if(nx>=0) cur=nx; } } draw(); });
+  $("[data-act=undo]",root).onclick=()=>{ const s=st[cur]; s.fill.pop(); s.ok=undefined; draw(); };
+  $("[data-act=check]",root).onclick=()=>{ let right=0; st.forEach(s=>{ const want=[...s.w].filter(ch=>VOW.has(ch)); s.ok = s.fill.length===want.length && want.every((v,i)=>v===s.fill[i]); if(s.ok) right++; }); draw(); out.textContent = right===st.length ? "All of them. ✔" : `${right} of ${st.length} right. Fix the red ones and check again.`; };
+  draw();
+}
+vowelGame($("#vowels-off"), ["ANGER","WRATH","MALICE","SLANDER","OBSCENE TALK","LYING"]);
+vowelGame($("#vowels-on"), ["COMPASSION","KINDNESS","HUMILITY","PATIENCE","FORGIVING","LOVE"]);
+
+/* ───────────────────────── match the opposites ───────────────────────── */
+(function(){
+  const PAIRS=[["falsehood / lying","speak the truth"],["anger (past sundown)","forgive before dark"],["stealing","honest work · share"],["corrupting talk","words that build up"],["malice (hatred)","compassion"],["slander","kindness"],["bitterness","tenderhearted"]];
+  const root=$("#matchbox"), L=$('[data-side="l"]',root), R=$('[data-side="r"]',root), svg=$("svg",root), out=$("[data-out]",root);
+  const shuffle=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+  L.innerHTML = shuffle(PAIRS.map((p,i)=>i)).map(i=>`<button class="m left" data-i="${i}">${PAIRS[i][0]}</button>`).join("");
+  R.innerHTML = shuffle(PAIRS.map((p,i)=>i)).map(i=>`<button class="m right" data-i="${i}">${PAIRS[i][1]}</button>`).join("");
+  let sel=null, done=0;
+  const center=(el,side)=>{ const r=el.getBoundingClientRect(), b=root.querySelector(".match").getBoundingClientRect(); return [side==="l"?r.right-b.left:r.left-b.left, r.top-b.top+r.height/2]; };
+  function line(a,b,color){ const [x1,y1]=center(a,"l"),[x2,y2]=center(b,"r"); const p=document.createElementNS("http://www.w3.org/2000/svg","path"); p.setAttribute("d",`M${x1} ${y1} C ${x1+40} ${y1}, ${x2-40} ${y2}, ${x2} ${y2}`); p.setAttribute("stroke",color); p.setAttribute("stroke-width","5"); p.setAttribute("fill","none"); p.setAttribute("stroke-linecap","round"); svg.appendChild(p); return p; }
+  $$(".m",root).forEach(b=>b.onclick=()=>{
+    if(b.classList.contains("done")) return;
+    if(b.classList.contains("left")){ $$(".left.sel",root).forEach(x=>x.classList.remove("sel")); b.classList.add("sel"); sel=b; return; }
+    if(!sel) { out.textContent="Tap a muddy word on the left first."; return; }
+    if(sel.dataset.i===b.dataset.i){ line(sel,b,"#f5c242"); sel.classList.add("done"); b.classList.add("done"); sel.classList.remove("sel"); sel=null; done++; out.textContent = done===PAIRS.length ? "Every opposite matched. ✔ That's the swap." : `${done} of ${PAIRS.length} matched.`; }
+    else { const p=line(sel,b,"#ff7a9c"); setTimeout(()=>p.remove(),600); out.textContent="Not that one. Look at the verses above."; }
+  });
+  window.addEventListener("resize",()=>{ svg.innerHTML=""; $$(".left.done",root).forEach(l=>{ const r=$(`.right[data-i="${l.dataset.i}"]`,root); line(l,r,"#f5c242"); }); });
+})();
+
+/* ───────────────────────── memory verse tree ───────────────────────── */
+const VERSE = "Therefore, as you received Christ Jesus the Lord, so walk in him, rooted and built up in him and established in the faith, just as you were taught, abounding in thanksgiving.".split(" ");
+(function(){
+  const tiles=$("#tiles"), built=$("#built"), tree=$("#tree"), say=$("#sayit"), sayBox=$("#sayit-box");
+  let next=0, order=[];
+  function drawTree(p){
+    const trunkH = 60+180*p, canopy = 0.25+0.95*p, roots = Math.round(p*10);
+    const rootPaths = Array.from({length:roots}).map((_,i)=>{ const dx=(i%2?1:-1)*(30+i*22), dy=40+i*9; return `<path d="M300 470 q${dx*0.4} ${dy*0.5} ${dx} ${dy}" stroke="#8a5a2b" stroke-width="${7-i*0.4}" fill="none" stroke-linecap="round"/>`; }).join("");
+    const leaves = Array.from({length:7}).map((_,i)=>{ const a=i/7*Math.PI*2, r=70*canopy; return `<circle cx="${300+Math.cos(a)*r}" cy="${470-trunkH-20+Math.sin(a)*r*0.7}" r="${55*canopy}" fill="${i%2?"#3fae6a":"#5fe3a1"}" opacity=".95"/>`; }).join("");
+    const bricks = Array.from({length:Math.round(p*6)}).map((_,i)=>`<rect x="${440+(i%2)*30}" y="${456-Math.floor(i/2)*24}" width="28" height="22" rx="3" fill="#c9a35a" stroke="#7a5a12"/>`).join("");
+    tree.innerHTML = `<rect x="0" y="470" width="600" height="90" fill="#2a1d10"/><rect x="0" y="462" width="600" height="12" fill="#3f7a3a"/>
+      ${rootPaths}
+      <rect x="${300-14-10*p}" y="${470-trunkH}" width="${28+20*p}" height="${trunkH}" rx="10" fill="#8a5a2b"/>
+      ${p>0?leaves:""}
+      ${bricks}
+      <text x="300" y="${470-trunkH-14}" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="${22+10*p}" fill="#1a1300" opacity="${p>0.3?1:0}">${Math.round(p*100)}%</text>
+      <text x="300" y="540" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="20" fill="#f5c242" letter-spacing="3">${roots>=10?"ROOTED · BUILT UP · ESTABLISHED":"ROOTED"}</text>`;
+  }
+  function reset(){ next=0; order=VERSE.map((w,i)=>i).map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+    tiles.innerHTML=order.map(i=>`<button class="tile" data-i="${i}">${VERSE[i]}</button>`).join(""); built.textContent="…"; sayBox.style.display="none"; drawTree(0);
+    $$(".tile",tiles).forEach(t=>t.onclick=()=>{ if(t.classList.contains("used"))return; if(+t.dataset.i===next){ t.classList.add("used"); next++; built.textContent=VERSE.slice(0,next).join(" "); drawTree(next/VERSE.length); if(next===VERSE.length){ S.verse=1; updateHUD(); sayBox.style.display="block"; hide(0); } } else { t.classList.add("wrong"); setTimeout(()=>t.classList.remove("wrong"),450); } });
+    updateHUD();
+  }
+  function hide(n){ const idx=new Set(); const all=n==="all"; const want=all?VERSE.length:Math.min(+n,VERSE.length); while(idx.size<want){ idx.add(Math.floor(Math.random()*VERSE.length)); }
+    say.innerHTML=VERSE.map((w,i)=>idx.has(i)?`<span class="h" title="tap to peek">${w}</span>`:w).join(" "); $$(".h",say).forEach(h=>h.onclick=()=>h.classList.toggle("r")); }
+  $$("[data-hide]").forEach(b=>b.onclick=()=>hide(b.dataset.hide));
+  $("#verse-reset").onclick=reset; reset();
+})();
+
+/* ───────────────────────── quiz ───────────────────────── */
+const QUIZ=[
+ {q:"Where was Paul when he wrote to the Ephesians and Colossians?",o:["In a dungeon in Jerusalem","Under house arrest in Rome","On a ship near Malta"],a:1,w:"Acts 28: two years in a rented house, one soldier guarding him, free to have visitors."},
+ {q:"Paul says the old self is…",o:["corrupt","confused","clean"],a:0,w:"Ephesians 4:22. Corrupt means spoiled, rotten, sinful."},
+ {q:"The new self is created after the likeness of God in…",o:["strength and speed","righteousness and holiness","wealth and wisdom"],a:1,w:"Ephesians 4:24."},
+ {q:"How are believers changed from the old self to the new self?",o:["By trying harder","By being renewed in the spirit of their minds","By moving to a new town"],a:1,w:"Ephesians 4:23. Change what you think about."},
+ {q:"Colossians 3:2 says to set your mind on…",o:["things that are above","things that are on earth","things that are fun"],a:0,w:"Where your mind points, your feet follow."},
+ {q:"Which is NOT on Paul's put-off list?",o:["slander","patience","malice"],a:1,w:"Patience is a put-ON (Colossians 3:12). Slander and malice are put-OFF (3:8)."},
+ {q:"Why does Paul say we should forgive each other?",o:["Because it feels good","Because the Lord has forgiven us","Because people say sorry"],a:1,w:"Colossians 3:13 and Ephesians 4:32."},
+ {q:"Becoming more like Jesus, a little at a time, is called…",o:["justification","sanctification","vacation"],a:1,w:"Sanctification is a lifelong process. It doesn't save us; Jesus does. It's what the saved get to do."},
+];
+(function(){
+  const box=$("#quiz");
+  box.innerHTML=QUIZ.map((q,i)=>`<div class="qz" data-i="${i}"><div class="qq">${i+1}. ${q.q}</div><div class="qo">${q.o.map((o,k)=>`<button data-k="${k}">${KEY[k]}. ${o}</button>`).join("")}</div><div class="why">${q.w}</div></div>`).join("");
+  $$(".qz",box).forEach(el=>{ const i=+el.dataset.i; $$("button",el).forEach(b=>b.onclick=()=>{ if(el.classList.contains("answered"))return; el.classList.add("answered"); const k=+b.dataset.k; S.quiz.asked++; if(k===QUIZ[i].a){ b.classList.add("ok"); S.quiz.right++; } else { b.classList.add("no"); $(`button[data-k="${QUIZ[i].a}"]`,el).classList.add("ok"); } updateHUD(); }); });
+})();
+
+/* ───────────────────────── take-home card ───────────────────────── */
+["th-name","th-off","th-on","th-who"].forEach(id=>{ const inp=$("#"+id), m=$(`[data-mirror="${id}"]`); inp.oninput=()=>m.textContent=inp.value; });
+$("#th-print").onclick=()=>window.print();
+
+/* ───────────────────────── chrome ───────────────────────── */
+function updateHUD(){ $("#hud-clean").textContent=`${cleanCount()} / 6`; $("#hud-verse").textContent=S.verse?"✔":"—"; $("#hud-quiz").textContent=S.quiz.asked?`${S.quiz.right}/${S.quiz.asked}`:"—"; $$("#dots a").forEach(a=>{ const n=+a.dataset.n; if(n>=1&&n<=6) a.classList.toggle("done",!!S.done[n-1]); if(n===7) a.classList.toggle("done",!!S.verse); if(n===8) a.classList.toggle("done",S.quiz.asked===QUIZ.length); }); }
+const NAMES=["Start","Put off","Above","Take off","Put on","The swap","Made new","Verse","Review"];
+$("#dots").innerHTML=NAMES.map((n,i)=>`<a href="#s${i}" data-n="${i}"><i></i>${n}</a>`).join("");
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ $$("#dots a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)); } }),{rootMargin:"-40% 0px -55% 0px"});
+$$("header, section.s").forEach(s=>io.observe(s));
+$("#teacher").onchange=e=>document.body.classList.toggle("teacher",e.target.checked);
+BEATS.forEach((_,i)=>renderRoom(i)); updateHUD();
+/* one voice at a time: pause other videos when one plays */
+$$("video").forEach(v=>v.addEventListener("play",()=>$$("video").forEach(o=>{ if(o!==v) o.pause(); })));
+</script>
+</body>
+</html>
