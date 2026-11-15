@@ -211,7 +211,7 @@ footer{margin-top:50px;color:var(--muted);font-size:.8rem;border-top:1px solid v
       <a class="btn" href="#s1">Start the lesson ▸</a>
       <a class="btn alt" href="#s7">Memory verse game</a>
     </div>
-    <div class="tn"><b>Teacher:</b> this page is built to run on the big screen. Read the bold lines aloud, play each clip, then let the class vote on the Changing Room choices by show of hands and tap the winner. Every section has a <b>Teacher notes</b> box like this one with the answers. Toggle it off before the kids see the screen.</div>
+    <div class="tn"><b>Teacher:</b> this page is built to run on the big screen. Read the bold lines aloud, play each clip, then let the class vote on the Changing Room choices by show of hands and tap the winner. Every section has a <b>Teacher notes</b> box like this one with the answers. Toggle it off before the kids see the screen. In the Changing Room the clean choice moves around (A, B or C changes every time the page loads) and the wrong choices are written to <i>sound</i> reasonable: a calm revenge, a "whatever" that is really bitterness, a prayer used as an excuse. Let the class argue before you tap.</div>
   </div>
   <div>
     <div class="lv"><div class="lv-head mono"><span>▶ Watch first · the story</span><span class="lv-sub">≈ 1 min 50</span></div>
@@ -411,46 +411,48 @@ const BEATS = [
  { piece:"shirt", virtue:"forgiveness", sin:"anger", lab:"Beat 1 · the shirt",
    q:"Your little brother knocks your headphones off the desk and they snap. He says it was an accident.",
    opts:[
-    {k:"off", t:"Yell at him and call him an idiot. He needs to know how mad you are.", ref:"Colossians 3:8", v:"Anger and wrath. That's the muddy shirt, and it just got worse. Paul says put them away."},
-    {k:"rem", t:"Say nothing. Give him the silent treatment all week so he learns.", ref:"Ephesians 4:26, 31", v:"You took the yelling off… and put nothing on. Silence isn't peace, it's bitterness, and the hole fills right back up with mud."},
-    {k:"on", t:"Tell him you're upset, breathe, then ask him to help you fix them.", ref:"Ephesians 4:32", v:"Truth about how you feel, and forgiveness on top. Clean shirt. 'Forgiving one another, as God in Christ forgave you.'"}
+    {k:"off", t:"Stay calm. Don't yell. Then later, 'accidentally' knock his game controller off the shelf so it's even.", ref:"Colossians 3:8 · Ephesians 4:31", v:"No shouting, so it looked clean. But paying him back is malice wearing a calm face. The mud is on the inside of the shirt, and it's still mud."},
+    {k:"rem", t:"Say 'It's fine, whatever,' go to your room, and never bring it up again.", ref:"Ephesians 4:26", v:"That sounds like forgiveness. It isn't. You took the yelling off and stuffed the anger in a drawer. Paul says don't let the sun go down on it, because by morning it has turned into bitterness."},
+    {k:"on", t:"Say 'I'm really upset right now, give me a minute.' Then come back, tell him you forgive him, and ask him to help pay for the fix.", ref:"Ephesians 4:25, 32", v:"Truth about how you feel, forgiveness on top, and a fair consequence. That's the whole swap in one move. Clean shirt."}
    ]},
  { piece:"cap", virtue:"things above", sin:"greed", lab:"Beat 2 · the cap",
    q:"You got $20 for your birthday. Your friend's family can't afford the class field trip this month.",
    opts:[
-    {k:"off", t:"Buy the game you wanted. It's your money.", ref:"Colossians 3:2", v:"Mind on things on earth. Greed splashed mud right on the cap."},
-    {k:"rem", t:"Don't buy the game, but keep the money 'just in case.' Maybe later.", ref:"Colossians 3:1", v:"You held back the greed, but you didn't aim at anything above. 'Later' is where good ideas go to disappear."},
-    {k:"on", t:"Chip in toward your friend's trip and keep it quiet.", ref:"Colossians 3:1–2", v:"Seek the things above. A clean cap, pointed up."}
+    {k:"off", t:"Pray that God provides for his family. Then buy the game. You can't fix everything.", ref:"Colossians 3:2", v:"Praying is good. Using a prayer as the reason to keep all your money is a mind set on things on earth with a church voice. The cap got muddy."},
+    {k:"rem", t:"Decide not to buy the game, and keep the $20 'in case he asks.' He never asks.", ref:"Colossians 3:1", v:"You took greed off, but you aimed at nothing above. 'In case he asks' is where good ideas go to disappear."},
+    {k:"on", t:"Give part of it toward the trip through your teacher, so nobody knows it came from you.", ref:"Colossians 3:1–2", v:"Seeking things above, with no one watching. Clean cap, pointed up."}
    ]},
  { piece:"jacket", virtue:"meekness", sin:"slander", lab:"Beat 3 · the jacket",
    q:"A kid in class says your drawing is trash, loud enough for everyone to hear.",
    opts:[
-    {k:"off", t:"Tell everyone he cheated on the math test. He didn't, but he deserves it.", ref:"Colossians 3:8–9", v:"Slander and a lie in one move. The jacket is caked."},
-    {k:"rem", t:"Say nothing, glare at him, and shove past his desk on the way out.", ref:"Ephesians 4:31", v:"No words, but the wrath leaked out anyway. Taking off the insult isn't the same as putting on gentleness."},
-    {k:"on", t:"Say 'That hurt,' walk away, and later ask a friend what they honestly think of it.", ref:"Colossians 3:12", v:"Meekness is gentle strength. Clean jacket."}
+    {k:"off", t:"Laugh it off in the moment. Then at lunch, tell your friends what a terrible artist HE is, with examples.", ref:"Colossians 3:8", v:"The laugh looked meek. The lunch table was slander. Paul puts slander on the take-off list, even when the other kid started it."},
+    {k:"rem", t:"Say nothing. Put the drawing in your bag and decide you're done with art.", ref:"Ephesians 4:31", v:"You didn't hit back, which is something. But you put nothing on, and quitting is bitterness in a quiet voice. The hole fills with mud."},
+    {k:"on", t:"Say 'Okay. What would you change?' If he's just being mean, walk away. If he has a point, use it.", ref:"Colossians 3:12", v:"Meekness is gentle strength: not crushed, not cruel. Clean jacket."}
    ]},
  { piece:"pants", virtue:"compassion", sin:"malice", lab:"Beat 4 · the pants",
    q:"You're team captain. The slowest kid in the grade is the last one standing, and everyone's watching you.",
    opts:[
-    {k:"off", t:"Tell the team out loud that this kid is going to make you lose.", ref:"Colossians 3:8", v:"Malice: wishing the worst on someone. Mud on the pants."},
-    {k:"rem", t:"Pick them last without a word and roll your eyes.", ref:"Colossians 3:12", v:"You didn't say anything cruel. You didn't put on anything kind either. The eye-roll did the talking."},
-    {k:"on", t:"Pick them next and put them in a spot where they can actually help.", ref:"Colossians 3:12", v:"Compassion and kindness. Clean pants."}
+    {k:"off", t:"Pick him, but loudly: 'Fine, I'll take him. We were going to lose anyway.'", ref:"Colossians 3:8 · Ephesians 4:29", v:"You picked him, so it looked kind. The words were malice with an audience. Corrupting talk tears down even while the hand is raised."},
+    {k:"rem", t:"Pick him without a word, then put him somewhere he never touches the ball.", ref:"Colossians 3:12", v:"Nothing cruel was said. Nothing compassionate was done either. Hiding him is a hole where kindness should be."},
+    {k:"on", t:"Pick him before he's last, and give him a job he can win at, like goalie or the throw-in.", ref:"Colossians 3:12", v:"Compassionate heart, kindness in action. Clean pants."}
    ]},
  { piece:"shoes", virtue:"honest work", sin:"stealing", lab:"Beat 5 · the shoes",
    q:"You find a $10 bill on the lunchroom floor. You saw it fall out of someone's pocket.",
    opts:[
-    {k:"off", t:"Pocket it. Finders keepers, and nobody saw.", ref:"Ephesians 4:28", v:"Paul calls that stealing, even when nobody saw. Muddy shoes."},
-    {k:"rem", t:"Keep it for now and plan to give it back 'if they ask.'", ref:"Ephesians 4:25", v:"Off with the grabbing, but nothing honest put on. 'If they ask' is a lie you tell yourself."},
-    {k:"on", t:"Walk it over and hand it back.", ref:"Ephesians 4:28", v:"Honest hands, and something to share. Clean shoes."}
+    {k:"off", t:"Hand it to the lunch monitor and say you don't know whose it is. You turned it in, so it isn't stealing.", ref:"Ephesians 4:25", v:"Turning it in looked honest. Saying you don't know whose it is was falsehood, and you knew. Muddy shoes, even with the money out of your pocket."},
+    {k:"rem", t:"Leave it on the floor. Not your money, not your problem.", ref:"Ephesians 4:28", v:"You didn't take it. You also didn't do the honest work of getting it home. Paul's thief doesn't just stop stealing, he works so he has something to give."},
+    {k:"on", t:"Pick it up, walk it over to the kid who dropped it, and say 'You dropped this.'", ref:"Ephesians 4:28", v:"Honest hands, used for someone else. Clean shoes."}
    ]},
  { piece:"belt", virtue:"love", sin:"lying", lab:"Beat 6 · the belt",
    q:"You told your mom you cleaned your room. You didn't. She's walking down the hall to check.",
    opts:[
-    {k:"off", t:"Double down. 'I did clean it! You just didn't look right.'", ref:"Colossians 3:9", v:"Do not lie to one another. No belt yet, and the mud is back."},
-    {k:"rem", t:"Blame your sister. She was in there too.", ref:"Ephesians 4:25, 31", v:"You dodged the lie by throwing slander. Nothing clean was put on."},
-    {k:"on", t:"Meet her in the hall: 'I didn't do it yet. I'm sorry. I'm going now.'", ref:"Ephesians 4:25 · Colossians 3:14", v:"Truth, owned before the door opened. And love, which binds everything together, is the belt that holds the outfit on."}
+    {k:"off", t:"Sprint ahead, shove everything under the bed, and say 'See? Done.'", ref:"Colossians 3:9", v:"Technically the floor is clear. It's a lie with props. Do not lie to one another, Paul says, and that includes lies you build instead of say."},
+    {k:"rem", t:"Say 'I was JUST about to do it,' and start cleaning fast so she sees you working.", ref:"Ephesians 4:25", v:"Half true, and a dodge. You never owned the first lie. Nothing clean went on, so the mud comes back."},
+    {k:"on", t:"Meet her in the hall: 'I told you I cleaned it and I hadn't. I'm sorry. I'm doing it now.'", ref:"Ephesians 4:25 · Colossians 3:14", v:"Truth, owned before the door opened. And love, which binds everything together, is the belt that holds the whole outfit on."}
    ]},
 ];
+const shuffle3=()=>{ const o=[0,1,2]; for(let i=2;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [o[i],o[j]]=[o[j],o[i]]; } return o; };
+BEATS.forEach((b,i)=>{ b.order=shuffle3(); if(i>0 && b.order.indexOf(2)===BEATS[i-1].order.indexOf(2)) b.order=[b.order[1],b.order[2],b.order[0]]; });
 const KEY=["A","B","C"];
 function renderRoom(i, verdictHTML, pickedIdx, pickedKind){
   const b=BEATS[i], room=$(`.room[data-beat="${i}"]`);
@@ -459,7 +461,7 @@ function renderRoom(i, verdictHTML, pickedIdx, pickedKind){
    <div class="stage" id="stage-${i}"><div class="tag"><span>THE CHANGING ROOM</span><b>${cleanCount()} / 6 clean</b></div><div class="chips">${chips}</div><div class="floor"></div>${kid(S.pieces)}</div>
    <div class="beat">
      <div class="sit"><div class="lab mono">${b.lab} · class vote</div><div class="q">${b.q}</div></div>
-     <div class="opts">${b.opts.map((o,k)=>`<button class="opt ${pickedIdx===k?"picked-"+o.k:""}" data-k="${k}" ${pickedIdx!=null?"disabled":""}><span class="k">${KEY[k]}</span><span>${o.t}</span></button>`).join("")}</div>
+     <div class="opts">${b.order.map((k,pos)=>{ const o=b.opts[k]; return `<button class="opt ${pickedIdx===k?"picked-"+o.k:""}" data-k="${k}" ${pickedIdx!=null?"disabled":""}><span class="k">${KEY[pos]}</span><span>${o.t}</span></button>`; }).join("")}</div>
      <div class="verdict ${verdictHTML?"show "+pickedKind:""}">${verdictHTML||""}</div>
    </div>`;
   $$(".opt",room).forEach(btn=>btn.onclick=()=>choose(i,+btn.dataset.k));
