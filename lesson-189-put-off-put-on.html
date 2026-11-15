@@ -597,6 +597,14 @@ $("#teacher").onchange=e=>document.body.classList.toggle("teacher",e.target.chec
 BEATS.forEach((_,i)=>renderRoom(i)); updateHUD();
 /* the embedded Bible Feud reports its height so the frame never scrolls inside the page */
 window.addEventListener("message",e=>{ if(e.data&&e.data.feudHeight){ const f=$("#feud"); if(f) f.style.height=Math.max(700,e.data.feudHeight+8)+"px"; } });
+/* if a video can't play here, say why in its header instead of sitting black */
+$$("video").forEach(v=>{
+  const head=v.closest(".lv")?.querySelector(".lv-sub");
+  const fail=(why)=>{ if(head){ head.textContent="can't play here: "+why; head.style.color="#ff7a9c"; } if(v.nextElementSibling?.dataset?.direct) return; const a=document.createElement("a"); a.dataset.direct="1"; a.href=v.querySelector("source")?.src||v.src; a.textContent="Open the video file directly"; a.style.cssText="display:block;padding:10px 16px;color:#56c6ff"; v.insertAdjacentElement("afterend",a); };
+  v.addEventListener("error",()=>fail("media error "+(v.error?v.error.code:"?")+" · "+((navigator.userAgent.match(/(iPhone|iPad|Android|Windows|Mac)/)||["?"])[0])),true);
+  v.querySelector("source")?.addEventListener("error",()=>fail("source failed to load · "+location.protocol));
+  if(location.protocol==="file:"||location.protocol==="about:"){ if(head){ head.textContent="open this page from the web link, not as a file"; head.style.color="#ff7a9c"; } }
+});
 /* one voice at a time: pause other videos when one plays */
 $$("video").forEach(v=>v.addEventListener("play",()=>$$("video").forEach(o=>{ if(o!==v) o.pause(); })));
 </script>
