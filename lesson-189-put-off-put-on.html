@@ -163,6 +163,8 @@ body.teacher .tn{display:block}
 .homecard .ln{border-bottom:2px solid #c9b27a;min-height:34px;font-size:1.1rem;font-weight:800;padding:4px 2px}
 .final{display:none;margin:18px 0;padding:22px;border-radius:var(--r);border:1px solid rgba(245,194,66,.5);background:linear-gradient(135deg,rgba(245,194,66,.12),rgba(86,198,255,.08))}
 .final.show{display:block;animation:pop .4s}
+.feud-wrap{border:1px solid rgba(245,194,66,.45);border-radius:18px;overflow:hidden;background:#0c1220;box-shadow:var(--shadow);margin:14px 0}
+.feud-wrap iframe{display:block;width:100%;height:1100px;border:0}
 footer{margin-top:50px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:16px}
 @media (max-width:860px){
   .hero,.room,.tree-wrap,.home{grid-template-columns:1fr}
@@ -376,13 +378,10 @@ footer{margin-top:50px;color:var(--muted);font-size:.8rem;border-top:1px solid v
 <section class="s" id="s9">
   <h2><span class="num">9</span>Bible Feud</h2>
   <p class="read">Two teams. Survey says. Three strikes and the other team can steal. Twelve rounds on everything from today, from Paul's shipwreck to the big word at the end.</p>
-  <div class="card" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between">
-    <div>
-      <div class="mono gold">Warm-up · Grades 4–5 · Challenge</div>
-      <p style="margin:6px 0 0">Opens full screen for the projector. Pick a tier at the top, or play all twelve rounds.</p>
-    </div>
-    <a class="btn" href="bible-feud-lesson189.html">Play Bible Feud ▸</a>
+  <div class="feud-wrap">
+    <iframe id="feud" src="bible-feud-lesson189.html" title="Bible Feud · Lesson 189" allow="autoplay" scrolling="no"></iframe>
   </div>
+  <p class="muted" style="font-size:.9rem">Need it bigger for the projector? <a href="bible-feud-lesson189.html" target="_blank" rel="noopener">Open Bible Feud in its own tab</a>.</p>
   <div class="tn"><b>How to run it:</b> split the room into two teams. Read the question, let the active team guess; tap a tile when they name an answer on the board, tap Strike when they miss. Three strikes = the other team gets one guess to steal, then Award the points. Reveal All shows what they missed. The music button plays a loop; mute it if it's too much.</div>
 </section>
 
@@ -596,6 +595,8 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ $$("
 $$("header, section.s").forEach(s=>io.observe(s));
 $("#teacher").onchange=e=>document.body.classList.toggle("teacher",e.target.checked);
 BEATS.forEach((_,i)=>renderRoom(i)); updateHUD();
+/* the embedded Bible Feud reports its height so the frame never scrolls inside the page */
+window.addEventListener("message",e=>{ if(e.data&&e.data.feudHeight){ const f=$("#feud"); if(f) f.style.height=Math.max(700,e.data.feudHeight+8)+"px"; } });
 /* one voice at a time: pause other videos when one plays */
 $$("video").forEach(v=>v.addEventListener("play",()=>$$("video").forEach(o=>{ if(o!==v) o.pause(); })));
 </script>

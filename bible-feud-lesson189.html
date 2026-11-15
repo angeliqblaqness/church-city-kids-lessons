@@ -332,6 +332,7 @@
   .tile-cover {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background: var(--panel2);
     display: flex;
     align-items: center;
@@ -1115,6 +1116,16 @@ function sfxReveal() {
 
 // ── START ─────────────────────────────────────────────────────────────────────
 initGame();
+</script>
+<script>
+// embedded in the lesson page: no back link, and tell the parent how tall the board is
+(function(){
+  if (window.self === window.top) return;
+  const back = document.querySelector('a[href^="lesson-189"]'); if (back) back.parentElement.style.display = 'none';
+  document.body.style.minHeight = '0'; document.documentElement.style.height = 'auto'; document.body.style.height = 'auto';
+  const post = () => parent.postMessage({ feudHeight: Math.ceil(document.body.getBoundingClientRect().height) }, '*');
+  new ResizeObserver(post).observe(document.body); window.addEventListener('load', post); setInterval(post, 1500);
+})();
 </script>
 </body>
 </html>
